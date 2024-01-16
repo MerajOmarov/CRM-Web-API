@@ -83,7 +83,7 @@ The Project is developed in ASP.Net (.Net7) and MSSQL is used as a database.
 
 MSSQL Side
 
-There are 3 database:
+There are 3 databases:
 --_command_DB
    This DB is used for create, update and delete operations. 
 --_query_client_DB
