@@ -30,6 +30,7 @@ namespace Infrastructure.DataContexts.CommandDbContext
                    .WithOne(s => s._order_Customer)
                    .HasForeignKey(s => s._customer_ID)
                    .OnDelete(DeleteBehavior.Cascade);
+
             builder.Entity<_product_Model_write>()
                    .ToTable(tb => tb.HasTrigger("_product_InsertTrigger"))
                    .ToTable(tb => tb.HasTrigger("_product_Update_Trigger"))
@@ -38,11 +39,11 @@ namespace Infrastructure.DataContexts.CommandDbContext
                    .WithOne(s => s._order_Product)
                    .HasForeignKey(s => s._product_ID)
                    .OnDelete(DeleteBehavior.Cascade);
-            
+         
             builder.Entity<_order_Model_write>()
-                   .ToTable(tb => tb.HasTrigger("order_InsertTrigger"))
-                   .ToTable(tb => tb.HasTrigger("order_DeleteTrigger"))
-                   .ToTable(tb => tb.HasTrigger("product_InsertTrigger"));
+                   .ToTable(tb => tb.HasTrigger("_order_InsertTrigger"))
+                   .ToTable(tb => tb.HasTrigger("_order_UpdateTrigger"))
+                   .ToTable(tb => tb.HasTrigger("_order_RemoveTrigger"));
         
 
 

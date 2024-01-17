@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj": {}
+    "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj": {
+    "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj",
+        "projectUniqueName": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj",
         "projectName": "Domen",
-        "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj",
+        "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj",
         "packagesPath": "C:\\Users\\Meraj\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\obj\\",
+        "outputPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Meraj\\AppData\\Roaming\\NuGet\\NuGet.Config",

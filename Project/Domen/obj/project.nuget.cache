@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fbY+ImxjC9pAAEXPSxibitpBOa5xu6AfMZBE9XBiZKZXKaumS5rGP/XQtUXPFhnP0roR5bVPaWCu0WpfQxHjOw==",
+  "dgSpecHash": "eHDBksiFUpX4689nJkS71pPspU8AzkctO/R3k+bfKu7VQefD3dd+jf15JIew93HcnQju467ZnmmIkFgTttxJyA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj",
+  "projectFilePath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Meraj\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Meraj\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

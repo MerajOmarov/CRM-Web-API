@@ -31,7 +31,7 @@ namespace Domen.Models.QueryModel
         public string _cop_product_Screen { get; set; }
         public string _cop_product_Prosessor { get; set; }
         public string _cop_product_Company { get; set; }
-        public DateTime _product_CreatedTime { get; set; }
+        public DateTime _cop_product_CreatedTime { get; set; }
         public double _cop_product_Price { get; set; }
        
 

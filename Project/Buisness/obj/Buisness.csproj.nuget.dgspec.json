@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Buisness\\Buisness.csproj": {}
+    "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Buisness\\Buisness.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Abstraction\\Abstraction.csproj": {
+    "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Abstraction\\Abstraction.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Abstraction\\Abstraction.csproj",
+        "projectUniqueName": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Abstraction\\Abstraction.csproj",
         "projectName": "Abstraction",
-        "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Abstraction\\Abstraction.csproj",
+        "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Abstraction\\Abstraction.csproj",
         "packagesPath": "C:\\Users\\Meraj\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Abstraction\\obj\\",
+        "outputPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Abstraction\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Meraj\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj": {
-                "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj"
+              "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj": {
+                "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj"
               }
             }
           }
@@ -107,14 +107,14 @@
         }
       }
     },
-    "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Buisness\\Buisness.csproj": {
+    "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Buisness\\Buisness.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Buisness\\Buisness.csproj",
+        "projectUniqueName": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Buisness\\Buisness.csproj",
         "projectName": "Buisness",
-        "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Buisness\\Buisness.csproj",
+        "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Buisness\\Buisness.csproj",
         "packagesPath": "C:\\Users\\Meraj\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Buisness\\obj\\",
+        "outputPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Buisness\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Meraj\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -131,11 +131,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Abstraction\\Abstraction.csproj": {
-                "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Abstraction\\Abstraction.csproj"
+              "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Abstraction\\Abstraction.csproj": {
+                "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Abstraction\\Abstraction.csproj"
               },
-              "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Infrastructure\\Infrastructure.csproj"
+              "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -213,14 +213,14 @@
         }
       }
     },
-    "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj": {
+    "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj",
+        "projectUniqueName": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj",
         "projectName": "Domen",
-        "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj",
+        "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj",
         "packagesPath": "C:\\Users\\Meraj\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\obj\\",
+        "outputPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Meraj\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -312,14 +312,14 @@
         }
       }
     },
-    "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\Meraj\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Meraj\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -336,11 +336,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Abstraction\\Abstraction.csproj": {
-                "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Abstraction\\Abstraction.csproj"
+              "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Abstraction\\Abstraction.csproj": {
+                "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Abstraction\\Abstraction.csproj"
               },
-              "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj": {
-                "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj"
+              "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj": {
+                "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj"
               }
             }
           }

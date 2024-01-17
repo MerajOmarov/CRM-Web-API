@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9ySuTVDZ1EuLDSj9s42P/DI4Dho/9o3hsiiODSYKtTvIYi1zBZKwttB4znN/Be+3R7zt6xdZMkrRYN14c49WfQ==",
+  "dgSpecHash": "HXJcUy/7uo5ZMNWUVCLxWq9iXmohkjHr/eWMB69N3jCdVujUfRC7RnQJBtkm504q4HWgPw/JJFzNqg26TFiIIw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Abstraction\\Abstraction.csproj",
+  "projectFilePath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Abstraction\\Abstraction.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Meraj\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Meraj\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

@@ -130,6 +130,9 @@ namespace Infrastructure.Migrations._company_DbContext_readMigrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("_cop_product_CreatedTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("_cop_product_Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -156,9 +159,6 @@ namespace Infrastructure.Migrations._company_DbContext_readMigrations
                     b.Property<string>("_cop_product_Videocard")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("_product_CreatedTime")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("_cop_ID");
 

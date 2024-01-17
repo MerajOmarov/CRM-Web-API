@@ -4509,11 +4509,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\CRM_API\\Presentation.csproj",
+      "projectUniqueName": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\CRM_API\\Presentation.csproj",
       "projectName": "Presentation",
-      "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\CRM_API\\Presentation.csproj",
+      "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\CRM_API\\Presentation.csproj",
       "packagesPath": "C:\\Users\\Meraj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\CRM_API\\obj\\",
+      "outputPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\CRM_API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Meraj\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4530,11 +4530,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Buisness\\Buisness.csproj": {
-              "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Buisness\\Buisness.csproj"
+            "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Buisness\\Buisness.csproj": {
+              "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Buisness\\Buisness.csproj"
             },
-            "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Infrastructure\\Infrastructure.csproj"
+            "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }

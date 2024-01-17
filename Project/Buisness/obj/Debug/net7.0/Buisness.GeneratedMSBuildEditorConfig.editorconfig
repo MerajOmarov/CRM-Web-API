@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Buisness
-build_property.ProjectDir = C:\Users\Meraj\Desktop\CRM-Web-API\Project\Buisness\
+build_property.ProjectDir = C:\Users\Meraj\source\repos\CRM_API\Buisness\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
