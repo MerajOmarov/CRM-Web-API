@@ -19,7 +19,7 @@ namespace Buisness.ActionFilters.CommandActionFilter.CustomerActionFilters
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            var param = context.ActionArguments.SingleOrDefault(p => p.Value is _customer_PostDTO_request);
+            var param = context.ActionArguments.SingleOrDefault(p => p.Value is CustomerPostDTORequest);
             if (param.Value == null)
             {
                 context.Result = new BadRequestObjectResult("Action FIlter Error: Object is null");

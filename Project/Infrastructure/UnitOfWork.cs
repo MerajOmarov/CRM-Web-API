@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace Infrastructure
 {
-    public class UnitOfWork : IRepository_UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
-        private readonly _DbContext_write DbContext_write;
+        private readonly DbContextwrite _DbContext_write;
 
-        public UnitOfWork(_DbContext_write dbContext_write)
+        public UnitOfWork(DbContextwrite dbContext_write)
         {
-            DbContext_write = dbContext_write;
+            _DbContext_write = dbContext_write;
         }
 
         public Task Save(CancellationToken cancellationToken)
         {
-            return DbContext_write.SaveChangesAsync(cancellationToken);
+            return _DbContext_write.SaveChangesAsync(cancellationToken);
         }
 
         

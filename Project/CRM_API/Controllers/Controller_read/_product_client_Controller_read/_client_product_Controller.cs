@@ -21,15 +21,15 @@ namespace Presentation.Controllers.Controller_read._product_client_Controller_re
         [HttpGet("_all_products")]
         public async Task<IActionResult> GetAllProducts([FromQuery] double? product_Price)
         {
-            var respons = await product_Repository_get._all_products_Method_get(product_Price);
+            var respons = await product_Repository_get.GetProducts(product_Price);
            
             return Ok(respons);
         }
 
-        [HttpGet("_product_Barcode")]
+        [HttpGet("Barcode")]
         public async Task<IActionResult> GetForCustomer(Guid product_Barcode)
         {
-            var respons = await product_Repository_get._product_Method_get(product_Barcode);
+            var respons = await product_Repository_get.GetProduct(product_Barcode);
             return Ok(respons);
         }
     }

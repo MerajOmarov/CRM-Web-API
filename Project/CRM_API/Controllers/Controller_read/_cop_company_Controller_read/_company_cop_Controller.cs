@@ -12,24 +12,24 @@ namespace Presentation.Controllers.Controller_read._cop_Controller_read
     [ApiController]
     public class _company_cop_Controller : ControllerBase
     {
-        private readonly IRepository_cop_get _customerOrderProductRepository;
+        private readonly IReadcopsRepository _customerOrderProductRepository;
 
-        public _company_cop_Controller(IRepository_cop_get customerOrderProductRepository)
+        public _company_cop_Controller(IReadcopsRepository customerOrderProductRepository)
         {
             _customerOrderProductRepository = customerOrderProductRepository;
         }
 
-        [HttpGet("_order_Code")]
+        [HttpGet("Code")]
         public async Task<IActionResult> GetForOrder(Guid guidOfOrder, CancellationToken cancellation)
         {
-            var respons = await _customerOrderProductRepository._cop_Method_get(guidOfOrder);
+            var respons = await _customerOrderProductRepository.ReadCOP(guidOfOrder);
             return Ok(respons);
         }
 
-        [HttpGet("_customer_PIN")]
+        [HttpGet("PIN")]
         public async Task<IActionResult> GetForCustomer(Guid guidOfCustomer, CancellationToken cancellation)
         {
-            var respons = await _customerOrderProductRepository._all_cops_Method_get(guidOfCustomer);
+            var respons = await _customerOrderProductRepository.ReadCOPs(guidOfCustomer);
             return Ok(respons);
         }
     }

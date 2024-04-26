@@ -3940,11 +3940,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj",
+      "projectUniqueName": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj",
       "projectName": "Domen",
-      "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj",
+      "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj",
       "packagesPath": "C:\\Users\\Meraj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\obj\\",
+      "outputPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Meraj\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4032,7 +4032,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   },

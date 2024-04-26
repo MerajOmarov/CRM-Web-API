@@ -21,9 +21,9 @@ namespace CRM_API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddDbContext<_DbContext_write>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("_command_Connection")));
-            builder.Services.AddDbContext<_client_DbContext_read>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("_query_client_Connection")));
-            builder.Services.AddDbContext<_company_DbContext_read>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("_query_company_Connection")));
+            builder.Services.AddDbContext<DbContextwrite>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("_command_Connection")));
+            builder.Services.AddDbContext<ClientDbContextread>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("_query_client_Connection")));
+            builder.Services.AddDbContext<CompanyDbContextread>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("_query_company_Connection")));
             builder.Services.AddControllers();
             builder.Services.ConfigureBuisness();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -56,8 +56,8 @@ namespace CRM_API
                 });
             });
             // For Identity  
-            builder.Services.AddIdentity<_jwt_ApplicationUser, IdentityRole>()
-                            .AddEntityFrameworkStores<_DbContext_write>()
+            builder.Services.AddIdentity<JwtApplicationUser, IdentityRole>()
+                            .AddEntityFrameworkStores<DbContextwrite>()
                             .AddDefaultTokenProviders();
             // Adding Authentication  
             builder.Services.AddAuthentication(options =>

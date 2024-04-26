@@ -20,21 +20,21 @@ namespace Presentation.Controllers.Controller_write._product_Controller_write
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] _product_PostDTO_request request, CancellationToken cancellation)
+        public async Task<IActionResult> Post([FromBody] ProductPostDTOrequest request, CancellationToken cancellation)
         {
             var respons = await _mediator.Send(request, cancellation);
             return Ok(respons);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody] _product_UpdateDTO_request request, CancellationToken cancellation)
+        public async Task<IActionResult> Put([FromBody] ProductUpdateDTOrequest request, CancellationToken cancellation)
         {
             var respons = await _mediator.Send(request, cancellation);
             return Ok(respons);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] _product_DeleteDTO_request request, CancellationToken cancellation)
+        public async Task<IActionResult> Delete([FromBody] ProductDeleteDTOrequest request, CancellationToken cancellation)
         {
             var respons = await _mediator.Send(request, cancellation);
             return Ok(respons);

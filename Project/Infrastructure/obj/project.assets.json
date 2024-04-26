@@ -3995,11 +3995,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Infrastructure\\Infrastructure.csproj",
+      "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Infrastructure\\Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Meraj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Meraj\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4016,11 +4016,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Abstraction\\Abstraction.csproj": {
-              "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Abstraction\\Abstraction.csproj"
+            "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Abstraction\\Abstraction.csproj": {
+              "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Abstraction\\Abstraction.csproj"
             },
-            "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj": {
-              "projectPath": "C:\\Users\\Meraj\\source\\repos\\CRM_API\\Domen\\Domen.csproj"
+            "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj": {
+              "projectPath": "C:\\Users\\Meraj\\Desktop\\CRM-Web-API\\Project\\Domen\\Domen.csproj"
             }
           }
         }
@@ -4094,7 +4094,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   },
