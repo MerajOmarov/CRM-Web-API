@@ -20,9 +20,9 @@ namespace Infrastructure.Repositories.CommandRepositories.OrderRepository
             _Response = response;
         }
 
-        public async Task<OrderModelwrite> RemoveOrder(Guid orderCode)
+        public async Task<OrderWriteModel> RemoveOrder(Guid orderCode)
         {
-            OrderModelwrite order = await _Response.ResponseOrder(orderCode);
+            OrderWriteModel order = await _Response.ResponseOrder(orderCode);
             _DbContext.Orders.Remove(order);
             return order;
         }

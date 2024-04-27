@@ -56,7 +56,7 @@ namespace Buisness.Handlers.Order
             }
 
             //Mapping DTO to Entity
-            var orderTodb = _mapper.Map<OrderModelwrite>(request);
+            var orderTodb = _mapper.Map<OrderWriteModel>(request);
 
             var customerToOrder = await _repositoryCustomerResponse.ResponseCustomer(request.CustomerPIN);
 

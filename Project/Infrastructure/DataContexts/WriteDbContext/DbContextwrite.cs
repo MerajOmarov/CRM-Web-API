@@ -18,20 +18,20 @@ namespace Infrastructure.DataContexts.CommandDbContext
         {
 
         }
-        public DbSet<CustomerModelwrite> Customers { get; set; }
-        public DbSet<OrderModelwrite> Orders { get; set; }
-        public DbSet<ProductModelwrite> Products { get; set; }
+        public DbSet<CustomerWriteModel> Customers { get; set; }
+        public DbSet<OrderWriteModel> Orders { get; set; }
+        public DbSet<ProductWriteModel> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<CustomerModelwrite>()
+            builder.Entity<CustomerWriteModel>()
                    .HasMany(t => t.OrdersOfCustomer)
                    .WithOne(s => s.Customer)
                    .HasForeignKey(s => s.CustomerID)
                    .OnDelete(DeleteBehavior.Cascade);
 
-            builder.Entity<ProductModelwrite>()
+            builder.Entity<ProductWriteModel>()
                    .ToTable(tb => tb.HasTrigger("_product_InsertTrigger"))
                    .ToTable(tb => tb.HasTrigger("_product_Update_Trigger"))
                    .ToTable(tb => tb.HasTrigger("_product_Remove_Trigger"))
@@ -40,7 +40,7 @@ namespace Infrastructure.DataContexts.CommandDbContext
                    .HasForeignKey(s => s.productID)
                    .OnDelete(DeleteBehavior.Cascade);
          
-            builder.Entity<OrderModelwrite>()
+            builder.Entity<OrderWriteModel>()
                    .ToTable(tb => tb.HasTrigger("_order_InsertTrigger"))
                    .ToTable(tb => tb.HasTrigger("_order_UpdateTrigger"))
                    .ToTable(tb => tb.HasTrigger("_order_RemoveTrigger"));

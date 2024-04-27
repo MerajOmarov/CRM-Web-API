@@ -51,13 +51,13 @@ namespace Buisness
             //FLUENT VALIDATOR//
             //Customer
             services.AddValidatorsFromAssemblyContaining<CustomerPostDTOValidation>();
-            services.AddScoped<IValidator<CustomerPostDTORequest>, CustomerPostDTOValidation>();
+            services.AddScoped<IValidator<CustomerRequestPostDTO>, CustomerPostDTOValidation>();
 
             services.AddValidatorsFromAssemblyContaining<CustomerUpdateDTOValidation>();
-            services.AddScoped<IValidator<CustomerUpdateDTORequest>, CustomerUpdateDTOValidation>();
+            services.AddScoped<IValidator<CustomerRequestUpdateDTO>, CustomerUpdateDTOValidation>();
 
             services.AddValidatorsFromAssemblyContaining<CustomerRemoveDTOValidation>();
-            services.AddScoped<IValidator<CustomerDeleteDTORequest>, CustomerRemoveDTOValidation>();
+            services.AddScoped<IValidator<CustomerRequestDeleteDTO>, CustomerRemoveDTOValidation>();
             //Order
             services.AddValidatorsFromAssemblyContaining<OrderPostDTOValidation>();
             services.AddScoped<IValidator<OrderPostDTOrequest>, OrderPostDTOValidation>();

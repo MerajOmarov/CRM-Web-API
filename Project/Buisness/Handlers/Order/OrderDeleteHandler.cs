@@ -44,7 +44,7 @@ namespace Buisness.Handlers.Order
             }
 
             //Deleting from database
-            OrderModelwrite orderFromdb = await _repositoryRemove.RemoveOrder(request.Code);
+            OrderWriteModel orderFromdb = await _repositoryRemove.RemoveOrder(request.Code);
 
             //Mapping Entity to DTO
             var response = _mapper.Map<OrderDeleteDTOresponse>(orderFromdb);

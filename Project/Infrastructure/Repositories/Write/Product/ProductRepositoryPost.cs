@@ -19,7 +19,7 @@ namespace Infrastructure.Repositories.CommandRepositories.ProductRepository
             _DbContext = dbContext;
         }
 
-        public async Task PostProduct(ProductModelwrite product)
+        public async Task PostProduct(ProductWriteModel product)
         {
             var response = await _DbContext.Products.SingleOrDefaultAsync(x => x.Barcode == product.Barcode);
             if (response!= null)

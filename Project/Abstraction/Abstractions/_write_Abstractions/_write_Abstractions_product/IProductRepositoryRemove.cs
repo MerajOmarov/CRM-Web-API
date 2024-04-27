@@ -9,6 +9,6 @@ namespace Abstraction.Abstractions._write_Abstractions._write_Abstractions_produ
 {
     public interface IProductRepositoryRemove
     {
-        Task<ProductModelwrite> RemoveProduct(Guid product_Barcode);
+        Task<ProductWriteModel> RemoveProduct(Guid product_Barcode);
     }
 }

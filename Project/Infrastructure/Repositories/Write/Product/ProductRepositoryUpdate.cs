@@ -21,7 +21,7 @@ namespace Infrastructure.Repositories.CommandRepositories.ProductRepository
 
         public async Task UpdateProduct(Guid OldProductBarcode, Guid? NewProductBarcode, double? NewProductPrice)
         {
-            ProductModelwrite product = await Response.ResponseProduct(OldProductBarcode);
+            ProductWriteModel product = await Response.ResponseProduct(OldProductBarcode);
 
             if (NewProductBarcode.HasValue)
             {

@@ -27,7 +27,7 @@ namespace Infrastructure.Repositories.QueryRepositories
 
         public async Task<IEnumerable<copReadDTO>> ReadCOPs(Guid CustomerPIN)
         {
-            List<copModelread> cops = await _companyDbContextread.ClientOrderProducts.Where(x => x.CustomerPIN == CustomerPIN).ToListAsync();
+            List<COPReadModel> cops = await _companyDbContextread.ClientOrderProducts.Where(x => x.CustomerPIN == CustomerPIN).ToListAsync();
             List<copReadDTO> Responses = new();
             copReadDTO Response;
             int CountOfEltities = cops.Count;
@@ -46,7 +46,7 @@ namespace Infrastructure.Repositories.QueryRepositories
             CheckGuid(OrderCode);
 
             //Entity from database 
-            copModelread? customerOrderProductFromdb = await _companyDbContextread.ClientOrderProducts.SingleOrDefaultAsync(x => x.OrderCode == OrderCode);
+            COPReadModel? customerOrderProductFromdb = await _companyDbContextread.ClientOrderProducts.SingleOrDefaultAsync(x => x.OrderCode == OrderCode);
             if (customerOrderProductFromdb == null)
             {
                 throw new Exception("CustomerOrderProduct Error: The CustomerOrderProduct dose not exist");

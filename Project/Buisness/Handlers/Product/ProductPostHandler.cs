@@ -46,7 +46,7 @@ namespace Buisness.Handlers.ProductHandler
                 }
             }
             //Mapping DTO to Entity
-            var productTodb = _mapper.Map<ProductModelwrite>(request);
+            var productTodb = _mapper.Map<ProductWriteModel>(request);
 
             // Adding to database
             await _repositoryPost.PostProduct(productTodb);

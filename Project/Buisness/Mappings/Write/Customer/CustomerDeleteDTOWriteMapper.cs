@@ -15,7 +15,7 @@ namespace Buisness.Mappings.Write.Customer
     {
         public CustomerDeleteDTOWriteMapper()
         {
-            CreateMap<CustomerModelwrite, CustomerDeleteDTORespons>();
+            CreateMap<CustomerWriteModel, CustomerDeleteDTORespons>();
         }
     }
 }

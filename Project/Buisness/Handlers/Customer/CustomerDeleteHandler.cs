@@ -9,16 +9,16 @@ using MediatR;
 
 namespace Buisness.Handlers.Customer
 {
-    public class CustomerDeleteHandler : IRequestHandler<CustomerDeleteDTORequest, CustomerDeleteDTORespons>
+    public class CustomerDeleteHandler : IRequestHandler<CustomerRequestDeleteDTO, CustomerDeleteDTORespons>
     {
         private readonly IMapper _mapper;
-        private readonly IValidator<CustomerDeleteDTORequest> _validator;
+        private readonly IValidator<CustomerRequestDeleteDTO> _validator;
         private readonly ICustomerRepositoryRemove _repositoryRemove;
         private readonly IUnitOfWork _unitOfWork;
 
         public CustomerDeleteHandler(
             IMapper mapper,
-            IValidator<CustomerDeleteDTORequest> validator,
+            IValidator<CustomerRequestDeleteDTO> validator,
             ICustomerRepositoryRemove repositoryRemove,
             IUnitOfWork unitOfWork_Repository)
         {
@@ -29,7 +29,7 @@ namespace Buisness.Handlers.Customer
         }
 
         public async Task<CustomerDeleteDTORespons> Handle(
-            CustomerDeleteDTORequest request,
+            CustomerRequestDeleteDTO request,
             CancellationToken cancellationToken)
         {
             //Validation
@@ -43,7 +43,7 @@ namespace Buisness.Handlers.Customer
             }
 
             //Deleting from database
-            CustomerModelwrite customerFromdb = await _repositoryRemove.RemoveCustomer(request.PIN);
+            CustomerWriteModel customerFromdb = await _repositoryRemove.RemoveCustomer(request.PIN);
 
             //Mapping Entity to DTO
             var respons = _mapper.Map<CustomerDeleteDTORespons>(customerFromdb);

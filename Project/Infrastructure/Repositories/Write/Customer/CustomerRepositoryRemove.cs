@@ -20,9 +20,9 @@ namespace Infrastructure.Repositories.CommandRepositories.CustomerRepository
             _Response = customer_Repositoty_respons;
         }
 
-        public async Task<CustomerModelwrite> RemoveCustomer(Guid CustomerPIN)
+        public async Task<CustomerWriteModel> RemoveCustomer(Guid CustomerPIN)
         {
-            CustomerModelwrite customer = await _Response.ResponseCustomer(CustomerPIN);
+            CustomerWriteModel customer = await _Response.ResponseCustomer(CustomerPIN);
             _DbContext.Customers.Remove(customer);
             return customer;
         }

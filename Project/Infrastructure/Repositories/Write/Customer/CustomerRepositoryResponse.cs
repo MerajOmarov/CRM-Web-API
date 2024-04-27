@@ -19,9 +19,9 @@ namespace Infrastructure.Repositories.CommandRepositories.CustomerRepository
             _DbContext = dbContext_write;
         }
 
-        public async Task<CustomerModelwrite> ResponseCustomer(Guid CustomerPIN)
+        public async Task<CustomerWriteModel> ResponseCustomer(Guid CustomerPIN)
         {
-            CustomerModelwrite? customer;
+            CustomerWriteModel? customer;
             customer = await _DbContext.Customers.SingleOrDefaultAsync(x => x.PIN == CustomerPIN);
             return customer;
         }

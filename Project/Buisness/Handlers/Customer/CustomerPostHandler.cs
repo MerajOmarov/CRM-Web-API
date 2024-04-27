@@ -9,17 +9,17 @@ using MediatR;
 
 namespace Buisness.Handlers.Customer
 {
-    public class CustomerPostHandler : IRequestHandler<CustomerPostDTORequest, CustomerPostDTOResponse>
+    public class CustomerPostHandler : IRequestHandler<CustomerRequestPostDTO, CustomerResponsePostDTO>
     {
         private readonly IMapper _mapper;
-        private readonly IValidator<CustomerPostDTORequest> _validator;
+        private readonly IValidator<CustomerRequestPostDTO> _validator;
         private readonly ICustomerRepositoryPost _repositoryPost;
         private readonly ICustomerRepositoryResponse _repositoryResponse;
         private readonly IUnitOfWork _unitOfWork;
 
         public CustomerPostHandler(
             IMapper mapper,
-            IValidator<CustomerPostDTORequest> validator,
+            IValidator<CustomerRequestPostDTO> validator,
             ICustomerRepositoryPost repositoryPost,
             ICustomerRepositoryResponse repositoryResponse,
             IUnitOfWork unitOfWork)
@@ -31,8 +31,8 @@ namespace Buisness.Handlers.Customer
            _unitOfWork = unitOfWork;
         }
 
-        public async Task<CustomerPostDTOResponse> Handle(
-            CustomerPostDTORequest request,
+        public async Task<CustomerResponsePostDTO> Handle(
+            CustomerRequestPostDTO request,
             CancellationToken cancellationToken)
         {
             //Validation
@@ -46,7 +46,7 @@ namespace Buisness.Handlers.Customer
             }
 
             //Mapping DTO to Entity
-            var customerTodb = _mapper.Map<CustomerModelwrite>(request);
+            var customerTodb = _mapper.Map<CustomerWriteModel>(request);
 
             // Adding to database
             await _repositoryPost.PostCustomer(customerTodb);
@@ -58,7 +58,7 @@ namespace Buisness.Handlers.Customer
             var customerFromdb = await _repositoryResponse.ResponseCustomer(customerTodb.PIN);
 
             // Mapping Entity to DTO
-            var response = _mapper.Map<CustomerPostDTOResponse>(customerFromdb);
+            var response = _mapper.Map<CustomerResponsePostDTO>(customerFromdb);
 
             //Respons
             return response;

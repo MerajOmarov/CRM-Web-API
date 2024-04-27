@@ -9,6 +9,6 @@ namespace Abstraction.Abstractions._write_Abstractions._write_Abstractions_order
 {
     public interface IOrderRepositoryResponse
     {
-        Task<OrderModelwrite> ResponseOrder(Guid order_Code);
+        Task<OrderWriteModel> ResponseOrder(Guid order_Code);
     }
 }

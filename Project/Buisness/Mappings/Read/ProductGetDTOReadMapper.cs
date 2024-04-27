@@ -14,7 +14,7 @@ namespace Buisness.Mappings.Read
     {
         public ProductGetDTOReadMapper()
         {
-            CreateMap<ProductModelread, ProductGetDTO>();
+            CreateMap<ProductReadModel, ProductGetDTO>();
         }
     }
 }

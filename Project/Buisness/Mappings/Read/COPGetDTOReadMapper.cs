@@ -8,7 +8,7 @@ namespace Buisness.Mapping.Read
     {
         public COPGetDTOReadMapper()
         {
-            CreateMap<copModelread, copReadDTO>();
+            CreateMap<COPReadModel, copReadDTO>();
         }
     }
 }

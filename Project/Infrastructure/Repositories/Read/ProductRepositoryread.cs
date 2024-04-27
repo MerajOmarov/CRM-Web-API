@@ -22,12 +22,12 @@ namespace Infrastructure.Repositories.QueryRepositories
 
         public async Task<IEnumerable<ProductGetDTO>> GetProducts(double? ProductPrice)
         {
-            List<ProductModelread> Products;
+            List<ProductReadModel> Products;
             if (ProductPrice!=null) 
             {
                 Products = await _DbContext.Products
                .Where(x=>x.Price==ProductPrice)
-               .Select(x => new ProductModelread
+               .Select(x => new ProductReadModel
                 {
                     Name = x.Name,
                     Description = x.Description,
@@ -39,7 +39,7 @@ namespace Infrastructure.Repositories.QueryRepositories
             else
             {
                Products = await _DbContext.Products
-               .Select(x => new ProductModelread
+               .Select(x => new ProductReadModel
                {
                    Name = x.Name,
                    Description = x.Description,
@@ -64,7 +64,7 @@ namespace Infrastructure.Repositories.QueryRepositories
         public async Task<ProductDetailedReadDTO> GetProduct(Guid ProductBarcode)
         {
             ProductDetailedReadDTO respon;
-            ProductModelread entityFromdb= await _DbContext.Products.SingleOrDefaultAsync(x=>x.Barcode==ProductBarcode);
+            ProductReadModel entityFromdb= await _DbContext.Products.SingleOrDefaultAsync(x=>x.Barcode==ProductBarcode);
             respon = _mapper.Map<ProductDetailedReadDTO>(entityFromdb);
             return respon;
         }

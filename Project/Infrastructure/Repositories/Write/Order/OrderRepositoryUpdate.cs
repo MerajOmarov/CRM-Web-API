@@ -21,7 +21,7 @@ namespace Infrastructure.Repositories.CommandRepositories.OrderRepository
 
         public async Task UpdateOrder(Guid OldOrderCode, Guid NewOrderCode, DateTime NewOrderDeedline)
         {
-            OrderModelwrite order = await _Response.ResponseOrder(OldOrderCode);
+            OrderWriteModel order = await _Response.ResponseOrder(OldOrderCode);
             order.Code = NewOrderCode;
             order.Deedline = NewOrderDeedline;
         }

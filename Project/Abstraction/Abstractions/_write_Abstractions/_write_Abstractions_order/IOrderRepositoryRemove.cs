@@ -9,6 +9,6 @@ namespace Abstraction.Abstractions._write_Abstractions._write_Abstractions_order
 {
     public interface IOrderRepositoryRemove
     {
-        Task<OrderModelwrite> RemoveOrder(Guid order_Code);
+        Task<OrderWriteModel> RemoveOrder(Guid order_Code);
     }
 }

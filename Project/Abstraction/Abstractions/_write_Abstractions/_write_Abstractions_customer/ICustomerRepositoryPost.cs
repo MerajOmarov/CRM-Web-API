@@ -9,6 +9,6 @@ namespace Abstraction.Abstractions._write_Abstractions._write_Abstractions_custo
 {
     public interface ICustomerRepositoryPost
     {
-        Task PostCustomer(CustomerModelwrite customer_model_write);
+        Task PostCustomer(CustomerWriteModel customer_model_write);
     }
 }

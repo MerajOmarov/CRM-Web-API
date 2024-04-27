@@ -9,6 +9,6 @@ namespace Abstraction.Abstractions._write_Abstractions._write_Abstractions_order
 {
     public interface IOrderRepositoryPost
     {
-        Task PostOrder(OrderModelwrite order_model_write);
+        Task PostOrder(OrderWriteModel order_model_write);
     }
 }

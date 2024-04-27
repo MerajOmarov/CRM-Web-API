@@ -20,9 +20,9 @@ namespace Infrastructure.Repositories.CommandRepositories.ProductRepository
             _Response = product_Repository_respons;
         }
 
-        public async Task<ProductModelwrite> RemoveProduct(Guid ProductBarcode)
+        public async Task<ProductWriteModel> RemoveProduct(Guid ProductBarcode)
         {
-            ProductModelwrite product = await _Response.ResponseProduct(ProductBarcode);
+            ProductWriteModel product = await _Response.ResponseProduct(ProductBarcode);
             _DbContext.Products.Remove(product);
             return product;
         }

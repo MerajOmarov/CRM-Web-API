@@ -9,6 +9,6 @@ namespace Abstraction.Abstractions._write_Abstractions._write_Abstractions_produ
 {
     public interface IProductRepositoryResponse
     {
-        Task<ProductModelwrite> ResponseProduct(Guid product_Barcode);
+        Task<ProductWriteModel> ResponseProduct(Guid product_Barcode);
     }
 }

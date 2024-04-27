@@ -19,9 +19,9 @@ namespace Infrastructure.Repositories.CommandRepositories.OrderRepository
             _DbContext = DbContext;
         }
 
-        public async Task<OrderModelwrite> ResponseOrder(Guid order_Code)
+        public async Task<OrderWriteModel> ResponseOrder(Guid order_Code)
         {
-            OrderModelwrite order;
+            OrderWriteModel order;
             order = await _DbContext.Orders.SingleOrDefaultAsync(x => x.Code == order_Code);
             return order;
         }

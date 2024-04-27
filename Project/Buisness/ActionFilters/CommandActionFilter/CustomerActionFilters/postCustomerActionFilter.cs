@@ -16,12 +16,9 @@ namespace Buisness.ActionFilters.CommandActionFilter.CustomerActionFilters
         {
 
         }
-        //asjhadhjddj  vdfdfkhsvhjsdf
-        //sakjdhd
-
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            var param = context.ActionArguments.SingleOrDefault(p => p.Value is CustomerPostDTORequest);
+            var param = context.ActionArguments.SingleOrDefault(p => p.Value is CustomerRequestPostDTO);
             if (param.Value == null)
             {
                 context.Result = new BadRequestObjectResult("Action FIlter Error: Object is null");
@@ -32,12 +29,6 @@ namespace Buisness.ActionFilters.CommandActionFilter.CustomerActionFilters
             {
                 context.Result = new UnprocessableEntityObjectResult(context.ModelState);
             }
-
-            //cdshdhhdshd
-            //kskacdkhcdk
-            //kskacdkhcdk
-            //kskacdkhcdk
-            //kskacdkhcdk
         }
     }
 }

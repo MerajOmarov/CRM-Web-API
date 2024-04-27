@@ -21,7 +21,7 @@ namespace Infrastructure.Repositories.CommandRepositories.CustomerRepository
 
         public async Task UpdateCustomer(Guid OldCustomerPIN, Guid NewCustomerPIN)
         {
-            CustomerModelwrite customer = await _Response.ResponseCustomer(OldCustomerPIN);
+            CustomerWriteModel customer = await _Response.ResponseCustomer(OldCustomerPIN);
             customer.PIN = NewCustomerPIN;
         }
     }

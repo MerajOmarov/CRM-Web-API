@@ -43,7 +43,7 @@ namespace Buisness.Handlers.ProductHandler
             }
 
             //Deleting from database
-            ProductModelwrite productFromdb = await _repository.RemoveProduct(request.Barcode);
+            ProductWriteModel productFromdb = await _repository.RemoveProduct(request.Barcode);
 
             //Mapping Entity to DTO
             var response = _mapper.Map<ProductDeleteDTOresponse>(productFromdb);

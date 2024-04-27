@@ -20,9 +20,9 @@ namespace Infrastructure.Repositories.CommandRepositories.CustomerRepository
         }
 
 
-        public async Task PostCustomer(CustomerModelwrite Customer)
+        public async Task PostCustomer(CustomerWriteModel Customer)
         {
-            //CustomerModelwrite? customer;
+            //CustomerWriteModel? customer;
             var result = await _DbContext.Customers.SingleOrDefaultAsync(x => x.PIN == Customer.PIN);
             if (result != null)
             {

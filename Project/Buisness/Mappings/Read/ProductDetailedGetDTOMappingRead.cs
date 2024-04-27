@@ -13,7 +13,7 @@ namespace Buisness.Mappings.Read
     {
         public ProductDetailedGetDTOMappingRead()
         {
-            CreateMap<ProductModelread,ProductDetailedReadDTO>();
+            CreateMap<ProductReadModel,ProductDetailedReadDTO>();
         }
     }
 }

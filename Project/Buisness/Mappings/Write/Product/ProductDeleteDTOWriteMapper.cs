@@ -13,9 +13,9 @@ namespace Buisness.Mappings.CommandMapping.ProductMapping
     {
         public ProductDeleteDTOWriteMapper()
         {
-            CreateMap<ProductDeleteDTOrequest, ProductModelwrite>();
+            CreateMap<ProductDeleteDTOrequest, ProductWriteModel>();
 
-            CreateMap<ProductModelwrite, ProductDeleteDTOresponse>();
+            CreateMap<ProductWriteModel, ProductDeleteDTOresponse>();
         }
     }
 }

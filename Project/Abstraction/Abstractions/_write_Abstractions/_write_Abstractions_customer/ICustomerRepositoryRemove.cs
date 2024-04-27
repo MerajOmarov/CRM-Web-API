@@ -9,6 +9,6 @@ namespace Abstraction.Abstractions._write_Abstractions._write_Abstractions_custo
 {
     public interface ICustomerRepositoryRemove
     {
-        Task<CustomerModelwrite> RemoveCustomer(Guid customer_PIN);
+        Task<CustomerWriteModel> RemoveCustomer(Guid customer_PIN);
     }
 }

@@ -27,7 +27,7 @@ namespace Presentation.Controllers.Controller_write._customer_Controller_write
 
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CustomerPostDTORequest request, CancellationToken cancellation)
+        public async Task<IActionResult> Post([FromBody] CustomerRequestPostDTO request, CancellationToken cancellation)
         {
             var respons = await _mediator.Send(request, cancellation);
             return Ok(respons);
@@ -36,7 +36,7 @@ namespace Presentation.Controllers.Controller_write._customer_Controller_write
         [HttpPut]
         //[Authorize]
         //[ServiceFilter(typeof(postCustomerActionFilter))]
-        public async Task<IActionResult> Put([FromBody] CustomerUpdateDTORequest request, CancellationToken cancellation)
+        public async Task<IActionResult> Put([FromBody] CustomerRequestUpdateDTO request, CancellationToken cancellation)
         {
             var respons = await _mediator.Send(request, cancellation);
             return Ok(respons);
@@ -45,7 +45,7 @@ namespace Presentation.Controllers.Controller_write._customer_Controller_write
         [HttpDelete]
         //[Authorize]
         //[ServiceFilter(typeof(postCustomerActionFilter))]
-        public async Task<IActionResult> Delete([FromBody] CustomerDeleteDTORequest request, CancellationToken cancellation)
+        public async Task<IActionResult> Delete([FromBody] CustomerRequestDeleteDTO request, CancellationToken cancellation)
         {
             var respons = await _mediator.Send(request, cancellation);
             return Ok(respons);

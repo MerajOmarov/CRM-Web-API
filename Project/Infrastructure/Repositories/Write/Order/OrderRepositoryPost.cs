@@ -19,7 +19,7 @@ namespace Infrastructure.Repositories.CommandRepositories.OrderRepository
             _DbContext = DbContext;
         }
 
-        public async Task PostOrder(OrderModelwrite order)
+        public async Task PostOrder(OrderWriteModel order)
         {
             var response = await _DbContext.Orders.SingleOrDefaultAsync(x => x.Code == order.Code);
             if(response != null)

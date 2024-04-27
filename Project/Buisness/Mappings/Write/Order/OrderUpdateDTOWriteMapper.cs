@@ -15,7 +15,7 @@ namespace Buisness.Mappings.Write.Order
     {
         public OrderUpdateDTOWriteMapper()
         {
-            CreateMap<OrderModelwrite, OrderUpdateDTOresponse>();
+            CreateMap<OrderWriteModel, OrderUpdateDTOresponse>();
         }
     }
 }

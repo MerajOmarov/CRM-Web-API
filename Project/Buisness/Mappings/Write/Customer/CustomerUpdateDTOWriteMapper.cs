@@ -15,7 +15,7 @@ namespace Buisness.Mappings.Write.Customer
     {
         public CustomerUpdateDTOWriteMapper()
         {
-            CreateMap<CustomerModelwrite, CustomerUpdateDTOResponse>();
+            CreateMap<CustomerWriteModel, CustomerResponseUpdateDTO>();
         }
     }
 }

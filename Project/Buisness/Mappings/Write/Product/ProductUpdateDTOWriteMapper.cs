@@ -15,9 +15,9 @@ namespace Buisness.Mappings.CommandMapping.ProductMapping
     {
         public ProductUpdateDTOWriteMapper()
         {
-            CreateMap<ProductUpdateDTOrequest, ProductModelwrite>();
+            CreateMap<ProductUpdateDTOrequest, ProductWriteModel>();
 
-            CreateMap<ProductModelwrite, ProductUpdateDTOresponse>();
+            CreateMap<ProductWriteModel, ProductUpdateDTOresponse>();
         }
     }
 }

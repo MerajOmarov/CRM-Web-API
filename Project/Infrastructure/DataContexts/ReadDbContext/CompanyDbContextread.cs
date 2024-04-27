@@ -18,7 +18,7 @@ namespace Infrastructure.DataContexts.QueryDbContext
         {
 
         }
-        public DbSet<copModelread> ClientOrderProducts { get; set; }
+        public DbSet<COPReadModel> ClientOrderProducts { get; set; }
 
 
     }
