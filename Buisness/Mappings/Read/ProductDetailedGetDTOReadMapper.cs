@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Buisness.Mappings.Read
 {
-    public  class ProductDetailedGetDTOMappingRead:Profile
+    public  class ProductDetailedGetDTOReadMapper:Profile
     {
-        public ProductDetailedGetDTOMappingRead()
+        public ProductDetailedGetDTOReadMapper()
         {
             CreateMap<ProductReadModel,ProductDetailedReadDTO>();
         }
