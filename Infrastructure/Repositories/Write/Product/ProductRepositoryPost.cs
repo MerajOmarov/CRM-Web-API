@@ -12,9 +12,9 @@ namespace Infrastructure.Repositories.CommandRepositories.ProductRepository
 {
     public class ProductRepositoryPost : IProductRepositoryPost
     {
-        private readonly DbContextwrite _DbContext;
+        private readonly WriteDbContext _DbContext;
 
-        public ProductRepositoryPost(DbContextwrite dbContext)
+        public ProductRepositoryPost(WriteDbContext dbContext)
         {
             _DbContext = dbContext;
         }

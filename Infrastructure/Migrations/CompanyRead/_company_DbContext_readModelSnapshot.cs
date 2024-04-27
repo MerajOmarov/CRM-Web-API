@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations._company_DbContext_readMigrations
 {
-    [DbContext(typeof(CompanyDbContextread))]
+    [DbContext(typeof(CompanyReadDbContext))]
     partial class _company_DbContext_readModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

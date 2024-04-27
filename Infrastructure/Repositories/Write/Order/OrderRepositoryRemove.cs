@@ -11,10 +11,10 @@ namespace Infrastructure.Repositories.CommandRepositories.OrderRepository
 {
     public class OrderRepositoryRemove : IOrderRepositoryRemove
     {
-        private readonly DbContextwrite _DbContext;
+        private readonly WriteDbContext _DbContext;
         private readonly IOrderRepositoryResponse _Response;
 
-        public OrderRepositoryRemove(DbContextwrite dbContext, IOrderRepositoryResponse response)
+        public OrderRepositoryRemove(WriteDbContext dbContext, IOrderRepositoryResponse response)
         {
             _DbContext = dbContext;
             _Response = response;

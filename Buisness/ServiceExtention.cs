@@ -60,22 +60,22 @@ namespace Buisness
             services.AddScoped<IValidator<CustomerRequestDeleteDTO>, CustomerRemoveDTOValidation>();
             //Order
             services.AddValidatorsFromAssemblyContaining<OrderPostDTOValidation>();
-            services.AddScoped<IValidator<OrderPostDTOrequest>, OrderPostDTOValidation>();
+            services.AddScoped<IValidator<OrderRequestPostDTO>, OrderPostDTOValidation>();
 
             services.AddValidatorsFromAssemblyContaining<OrderUpdateDTOValidation>();
-            services.AddScoped<IValidator<OrderUpdateDTOrequest>, OrderUpdateDTOValidation>();
+            services.AddScoped<IValidator<OrderRequestUpdateDTO>, OrderUpdateDTOValidation>();
 
             services.AddValidatorsFromAssemblyContaining<OrderDeleteDTOValidation>();
-            services.AddScoped<IValidator<OrderDeleteDTOrequest>, OrderDeleteDTOValidation>();
+            services.AddScoped<IValidator<OrderRequestDeleteDTO>, OrderDeleteDTOValidation>();
             //Product
             services.AddValidatorsFromAssemblyContaining<ProductPostDTOValidation>();
-            services.AddScoped<IValidator<ProductPostDTOrequest>, ProductPostDTOValidation>();
+            services.AddScoped<IValidator<ProductRequestPostDTO>, ProductPostDTOValidation>();
 
             services.AddValidatorsFromAssemblyContaining<ProductUpdateDTOValidation>();
-            services.AddScoped<IValidator<ProductUpdateDTOrequest>, ProductUpdateDTOValidation>();
+            services.AddScoped<IValidator<ProductRequestUpdateDTO>, ProductUpdateDTOValidation>();
 
             services.AddValidatorsFromAssemblyContaining<ProductDeleteDTOValidation>();
-            services.AddScoped<IValidator<ProductDeleteDTOrequest>, ProductDeleteDTOValidation>();
+            services.AddScoped<IValidator<ProductRequestDeleteDTO>, ProductDeleteDTOValidation>();
         
 
             //JWT//
@@ -93,14 +93,14 @@ namespace Buisness
             services.AddScoped<IProductRepositoryUpdate, ProductRepositoryUpdate>();
             services.AddScoped<IProductRepositoryRemove, ProductRepositoryRemove>();
             services.AddScoped<IProductRepositoryResponse, ProductRepositoryResponse>();
-            services.AddScoped<IRepository_product_get, ProductRepositoryread>();
+            services.AddScoped<IProductReadRepository, ProductReadRepository>();
             //Order
             services.AddScoped<IOrderRepositoryPost, OrderRepositoryPost>();
             services.AddScoped<IOrderRepositoryUpdate, OrderRepositoryUpdate>();
             services.AddScoped<IOrderRepositoryRemove, OrderRepositoryRemove>();
             services.AddScoped<IOrderRepositoryResponse, OrderRepositoryResponse>();
             //CustomerOrderProduct
-            services.AddScoped<IReadcopsRepository, ReadcopsRepository>();
+            services.AddScoped<ICOPReadRepository, COPReadRepository>();
 
 
             //UNIT OF WORK//

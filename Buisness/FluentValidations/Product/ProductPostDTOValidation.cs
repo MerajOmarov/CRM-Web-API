@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Buisness.FluentValidations.Product
 {
-    public class ProductPostDTOValidation : AbstractValidator<ProductPostDTOrequest>
+    public class ProductPostDTOValidation : AbstractValidator<ProductRequestPostDTO>
     {
         public ProductPostDTOValidation()
         {

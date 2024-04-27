@@ -9,16 +9,16 @@ using MediatR;
 
 namespace Buisness.Handlers.ProductHandler
 {
-    public class ProductDeleteHandler : IRequestHandler<ProductDeleteDTOrequest, ProductDeleteDTOresponse>
+    public class ProductDeleteHandler : IRequestHandler<ProductRequestDeleteDTO, ProductResponseDeleteDTO>
     {
         private readonly IMapper _mapper;
-        private readonly IValidator<ProductDeleteDTOrequest> _validator;
+        private readonly IValidator<ProductRequestDeleteDTO> _validator;
         private readonly IProductRepositoryRemove _repository;
         private readonly IUnitOfWork _unitOfWork;
 
         public ProductDeleteHandler(
             IMapper mapper,
-            IValidator<ProductDeleteDTOrequest> validator,
+            IValidator<ProductRequestDeleteDTO> validator,
             IProductRepositoryRemove repository,
             IUnitOfWork unitOfWork)
         {
@@ -28,8 +28,8 @@ namespace Buisness.Handlers.ProductHandler
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<ProductDeleteDTOresponse> Handle(
-            ProductDeleteDTOrequest request,
+        public async Task<ProductResponseDeleteDTO> Handle(
+            ProductRequestDeleteDTO request,
             CancellationToken cancellationToken)
         {
             //Validation
@@ -46,7 +46,7 @@ namespace Buisness.Handlers.ProductHandler
             ProductWriteModel productFromdb = await _repository.RemoveProduct(request.Barcode);
 
             //Mapping Entity to DTO
-            var response = _mapper.Map<ProductDeleteDTOresponse>(productFromdb);
+            var response = _mapper.Map<ProductResponseDeleteDTO>(productFromdb);
 
             //Saving changes
             await _unitOfWork.Save(cancellationToken);

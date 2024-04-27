@@ -12,9 +12,9 @@ namespace Infrastructure.Repositories.CommandRepositories.OrderRepository
 {
     public class OrderRepositoryResponse : IOrderRepositoryResponse
     {
-        private readonly DbContextwrite _DbContext;
+        private readonly WriteDbContext _DbContext;
 
-        public OrderRepositoryResponse(DbContextwrite DbContext)
+        public OrderRepositoryResponse(WriteDbContext DbContext)
         {
             _DbContext = DbContext;
         }

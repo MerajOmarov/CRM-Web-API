@@ -10,9 +10,9 @@ namespace Presentation.Controllers.Controller_read._product_client_Controller_re
     public class _client_product_Controller : ControllerBase
     {
         private readonly IMediator _mediator;
-        IRepository_product_get product_Repository_get;
+        IProductReadRepository product_Repository_get;
 
-        public _client_product_Controller(IMediator mediator, IRepository_product_get product_Repository_get)
+        public _client_product_Controller(IMediator mediator, IProductReadRepository product_Repository_get)
         {
             _mediator = mediator;
             this.product_Repository_get = product_Repository_get;

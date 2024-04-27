@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Buisness.FluentValidations.Product
 {
-    public class ProductUpdateDTOValidation : AbstractValidator<ProductUpdateDTOrequest>
+    public class ProductUpdateDTOValidation : AbstractValidator<ProductRequestUpdateDTO>
     {
         public ProductUpdateDTOValidation()
         {

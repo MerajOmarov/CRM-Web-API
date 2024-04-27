@@ -12,10 +12,10 @@ using MediatR;
 
 namespace Buisness.Handlers.Order
 {
-    public class OrderPostHandler : IRequestHandler<OrderPostDTOrequest, OrderPostDTOresponse>
+    public class OrderPostHandler : IRequestHandler<OrderRequestPostDTO, OrderResponsePostDTO>
     {
         private readonly IMapper _mapper;
-        private readonly IValidator<OrderPostDTOrequest> _validator;
+        private readonly IValidator<OrderRequestPostDTO> _validator;
         private readonly IOrderRepositoryPost _repositoryPost;
         private readonly ICustomerRepositoryResponse _repositoryCustomerResponse;
         private readonly IProductRepositoryResponse _repositoryProductResponse;
@@ -24,7 +24,7 @@ namespace Buisness.Handlers.Order
 
         public OrderPostHandler(
             IMapper mapper,
-            IValidator<OrderPostDTOrequest> validator,
+            IValidator<OrderRequestPostDTO> validator,
             IOrderRepositoryPost order_Repository_post,
             ICustomerRepositoryResponse customer_Repository_respons,
             IProductRepositoryResponse product_Repository_respons,
@@ -40,8 +40,8 @@ namespace Buisness.Handlers.Order
             _unitOfWork = unitOfWork_Respository;
         }
 
-        public async Task<OrderPostDTOresponse> Handle(
-            OrderPostDTOrequest request,
+        public async Task<OrderResponsePostDTO> Handle(
+            OrderRequestPostDTO request,
             CancellationToken cancellationToken)
         {
             //Validation
@@ -76,7 +76,7 @@ namespace Buisness.Handlers.Order
             var orderFromdb = await _repositoryOrderResponse.ResponseOrder(orderTodb.Code);
 
             // Mapping Entity to DTO
-            var response = _mapper.Map<OrderPostDTOresponse>(orderFromdb);
+            var response = _mapper.Map<OrderResponsePostDTO>(orderFromdb);
 
             response.CustomerName = customerToOrder.Name;
 

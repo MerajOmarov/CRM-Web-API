@@ -11,10 +11,10 @@ namespace Infrastructure.Repositories.CommandRepositories.ProductRepository
 {
     public class ProductRepositoryRemove : IProductRepositoryRemove
     {
-        private readonly DbContextwrite _DbContext;
+        private readonly WriteDbContext _DbContext;
         private readonly IProductRepositoryResponse _Response;
 
-        public ProductRepositoryRemove(DbContextwrite dbContext_write, IProductRepositoryResponse product_Repository_respons)
+        public ProductRepositoryRemove(WriteDbContext dbContext_write, IProductRepositoryResponse product_Repository_respons)
         {
             _DbContext = dbContext_write;
             _Response = product_Repository_respons;

@@ -9,16 +9,16 @@ using MediatR;
 
 namespace Buisness.Handlers.Order
 {
-    public class OrderDeleteHandler : IRequestHandler<OrderDeleteDTOrequest, OrderDeleteDTOresponse>
+    public class OrderDeleteHandler : IRequestHandler<OrderRequestDeleteDTO, OrderResponseDeleteDTO>
     {
         private readonly IMapper _mapper;
-        private readonly IValidator<OrderDeleteDTOrequest> _validator;
+        private readonly IValidator<OrderRequestDeleteDTO> _validator;
         private readonly IOrderRepositoryRemove _repositoryRemove;
         private readonly IUnitOfWork _unitOfWork;
 
         public OrderDeleteHandler(
             IMapper mapper,
-            IValidator<OrderDeleteDTOrequest> validator,
+            IValidator<OrderRequestDeleteDTO> validator,
             IOrderRepositoryRemove repositoryRemove,
             IUnitOfWork unitOfWork)
         {
@@ -28,8 +28,8 @@ namespace Buisness.Handlers.Order
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<OrderDeleteDTOresponse> Handle(
-            OrderDeleteDTOrequest request,
+        public async Task<OrderResponseDeleteDTO> Handle(
+            OrderRequestDeleteDTO request,
             CancellationToken cancellationToken)
         {
 
@@ -47,7 +47,7 @@ namespace Buisness.Handlers.Order
             OrderWriteModel orderFromdb = await _repositoryRemove.RemoveOrder(request.Code);
 
             //Mapping Entity to DTO
-            var response = _mapper.Map<OrderDeleteDTOresponse>(orderFromdb);
+            var response = _mapper.Map<OrderResponseDeleteDTO>(orderFromdb);
 
             //Saving changes
             await _unitOfWork.Save(cancellationToken);

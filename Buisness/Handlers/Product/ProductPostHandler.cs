@@ -10,17 +10,17 @@ using MediatR;
 
 namespace Buisness.Handlers.ProductHandler
 {
-    public class ProductPostHandler : IRequestHandler<ProductPostDTOrequest, ProductPostDTOresponse>
+    public class ProductPostHandler : IRequestHandler<ProductRequestPostDTO, ProductResponsePostDTO>
     {
         private readonly IMapper _mapper;
-        private readonly IValidator<ProductPostDTOrequest> _validator;
+        private readonly IValidator<ProductRequestPostDTO> _validator;
         private readonly IProductRepositoryPost _repositoryPost;
         private readonly IProductRepositoryResponse _repositoryResponse;
         private readonly IUnitOfWork _unitOfWork;
 
         public ProductPostHandler(
             IMapper mapper,
-            IValidator<ProductPostDTOrequest> validator,
+            IValidator<ProductRequestPostDTO> validator,
             IProductRepositoryPost product_Repository_post,
             IProductRepositoryResponse product_Repository_respons,
             IUnitOfWork unitOfWork_Respository)
@@ -32,8 +32,8 @@ namespace Buisness.Handlers.ProductHandler
             _unitOfWork = unitOfWork_Respository;
         }
 
-        public async Task<ProductPostDTOresponse> Handle(
-            ProductPostDTOrequest request,
+        public async Task<ProductResponsePostDTO> Handle(
+            ProductRequestPostDTO request,
             CancellationToken cancellationToken)
         {
             //Validation
@@ -58,7 +58,7 @@ namespace Buisness.Handlers.ProductHandler
             var productFromdb = await _repositoryResponse.ResponseProduct(productTodb.Barcode);
 
             // Mapping Entity to DTO
-            var response = _mapper.Map<ProductPostDTOresponse>(productFromdb);
+            var response = _mapper.Map<ProductResponsePostDTO>(productFromdb);
 
             //Respons
             return response;

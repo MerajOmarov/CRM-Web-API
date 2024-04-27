@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Buisness.FluentValidations.Order
 {
-    public class OrderDeleteDTOValidation : AbstractValidator<OrderDeleteDTOrequest>
+    public class OrderDeleteDTOValidation : AbstractValidator<OrderRequestDeleteDTO>
     {
         public OrderDeleteDTOValidation()
         {

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations._client_DbContext_readMigrations
 {
-    [DbContext(typeof(ClientDbContextread))]
+    [DbContext(typeof(ClientReadDbContext))]
     [Migration("20240113115904_FinalMigration")]
     partial class FinalMigration
     {

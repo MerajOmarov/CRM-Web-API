@@ -11,17 +11,17 @@ using MediatR;
 
 namespace Buisness.Handlers.Order
 {
-    public class OrderUpdateHandler : IRequestHandler<OrderUpdateDTOrequest, OrderUpdateDTOresponse>
+    public class OrderUpdateHandler : IRequestHandler<OrderRequestUpdateDTO, OrderResponseUpdateDTO>
     {
         private readonly IMapper _mapper;
-        private readonly IValidator<OrderUpdateDTOrequest> _validator;
+        private readonly IValidator<OrderRequestUpdateDTO> _validator;
         private readonly IOrderRepositoryUpdate _repositoryUpdate;
         private readonly IOrderRepositoryResponse _repositoryOrderResponse;
         private readonly IProductRepositoryResponse _repositoryProductResponse;
         private readonly ICustomerRepositoryResponse _repositoryCustomerResponse;
         private readonly IUnitOfWork _unitOfWork_Repository;
 
-        public OrderUpdateHandler(IMapper mapper, IValidator<OrderUpdateDTOrequest> validator,
+        public OrderUpdateHandler(IMapper mapper, IValidator<OrderRequestUpdateDTO> validator,
                                   IOrderRepositoryUpdate repositoryUpdate,
                                   IOrderRepositoryResponse repositoryOrderResponse,
                                   IProductRepositoryResponse repositoryProductResponse,
@@ -37,8 +37,8 @@ namespace Buisness.Handlers.Order
             _unitOfWork_Repository = unitOfWork_Repository;
         }
 
-        public async Task<OrderUpdateDTOresponse> Handle(
-            OrderUpdateDTOrequest request,
+        public async Task<OrderResponseUpdateDTO> Handle(
+            OrderRequestUpdateDTO request,
             CancellationToken cancellationToken)
         {
             //Validation
@@ -61,7 +61,7 @@ namespace Buisness.Handlers.Order
             var orderFromdb = await _repositoryOrderResponse.ResponseOrder(request.newCode);
 
             // Mapping Entity to DTO
-            var response = _mapper.Map<OrderUpdateDTOresponse>(orderFromdb);
+            var response = _mapper.Map<OrderResponseUpdateDTO>(orderFromdb);
 
             var customer = await _repositoryCustomerResponse.ResponseCustomer(orderFromdb.CustomerPIN);
 

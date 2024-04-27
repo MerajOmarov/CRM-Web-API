@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations._company_DbContext_readMigrations
 {
-    [DbContext(typeof(CompanyDbContextread))]
+    [DbContext(typeof(CompanyReadDbContext))]
     [Migration("20240117055535_The lastest Migration")]
     partial class ThelastestMigration
     {

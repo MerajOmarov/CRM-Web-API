@@ -12,9 +12,9 @@ namespace Presentation.Controllers.Controller_read._cop_Controller_read
     [ApiController]
     public class _company_cop_Controller : ControllerBase
     {
-        private readonly IReadcopsRepository _customerOrderProductRepository;
+        private readonly ICOPReadRepository _customerOrderProductRepository;
 
-        public _company_cop_Controller(IReadcopsRepository customerOrderProductRepository)
+        public _company_cop_Controller(ICOPReadRepository customerOrderProductRepository)
         {
             _customerOrderProductRepository = customerOrderProductRepository;
         }

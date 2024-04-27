@@ -11,9 +11,9 @@ namespace Infrastructure
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContextwrite _DbContext_write;
+        private readonly WriteDbContext _DbContext_write;
 
-        public UnitOfWork(DbContextwrite dbContext_write)
+        public UnitOfWork(WriteDbContext dbContext_write)
         {
             _DbContext_write = dbContext_write;
         }

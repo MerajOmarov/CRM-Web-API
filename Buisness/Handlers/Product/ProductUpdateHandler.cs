@@ -9,17 +9,17 @@ using MediatR;
 
 namespace Buisness.Handlers.ProductHandler
 {
-    public class ProductUpdateHandler : IRequestHandler<ProductUpdateDTOrequest, ProductUpdateDTOresponse>
+    public class ProductUpdateHandler : IRequestHandler<ProductRequestUpdateDTO, ProductResponseUpdateDTO>
     {
         private readonly IMapper _mapper;
-        private readonly IValidator<ProductUpdateDTOrequest> _validator;
+        private readonly IValidator<ProductRequestUpdateDTO> _validator;
         private readonly IProductRepositoryUpdate _repositoryUpdate;
         private readonly IProductRepositoryResponse _repositoryResponse;
         private readonly IUnitOfWork _unitOfWork;
 
         public ProductUpdateHandler(
             IMapper mapper,
-            IValidator<ProductUpdateDTOrequest> validator,
+            IValidator<ProductRequestUpdateDTO> validator,
             IProductRepositoryUpdate repositoryUpdate,
             IProductRepositoryResponse repositoryResponse,
             IUnitOfWork unitOfWork_Repository)
@@ -31,7 +31,7 @@ namespace Buisness.Handlers.ProductHandler
             _unitOfWork = unitOfWork_Repository;
         }
 
-        public async Task<ProductUpdateDTOresponse> Handle(ProductUpdateDTOrequest request, CancellationToken cancellationToken)
+        public async Task<ProductResponseUpdateDTO> Handle(ProductRequestUpdateDTO request, CancellationToken cancellationToken)
         {
             //Validation
             var result = await _validator.ValidateAsync(request);
@@ -53,7 +53,7 @@ namespace Buisness.Handlers.ProductHandler
             var productFromdb = await _repositoryResponse.ResponseProduct(request.NewBarcode);
 
             // Mapping Entity to DTO
-            var response = _mapper.Map<ProductUpdateDTOresponse>(productFromdb);
+            var response = _mapper.Map<ProductResponseUpdateDTO>(productFromdb);
 
             //Respons
             return response;

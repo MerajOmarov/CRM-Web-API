@@ -13,8 +13,8 @@ namespace Infrastructure.Repositories.CommandRepositories.CustomerRepository
 {
     public class CustomerRepositoryPost :ICustomerRepositoryPost
     {
-        private readonly DbContextwrite _DbContext;
-        public CustomerRepositoryPost(DbContextwrite DbContext)
+        private readonly WriteDbContext _DbContext;
+        public CustomerRepositoryPost(WriteDbContext DbContext)
         {
             _DbContext = DbContext;
         }

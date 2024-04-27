@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
-    [DbContext(typeof(DbContextwrite))]
+    [DbContext(typeof(WriteDbContext))]
     [Migration("20240113104243_MylastMigration")]
     partial class MylastMigration
     {
