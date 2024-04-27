@@ -1,0 +1,42 @@
+# Önbellek dosyaları
+*.log
+*.cache
+
+# Yerel yapılandırma dosyaları
+*.env
+*.local
+
+# Yerel veritabanı dosyaları
+*.sqlite
+*.db
+
+# Derleme ve build dosyaları
+bin/
+obj/
+build/
+dist/
+
+# IDE veya editör tarafından oluşturulan dosyalar
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Sistem tarafından oluşturulan dosyalar
+.DS_Store
+Thumbs.db
+
+# Paket yöneticisi veya bağımlılık yöneticisi tarafından oluşturulan dosyalar
+node_modules/
+vendor/
+
+# Geçici dosyalar
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Kullanıcı tarafından özel olarak oluşturulan yapılandırma dosyaları
+config.ini
+credentials.json
+/Project/.vs/CRM_API/v17/.suo
