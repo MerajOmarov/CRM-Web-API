@@ -16,7 +16,8 @@ namespace Buisness.ActionFilters.CommandActionFilter.CustomerActionFilters
         {
 
         }
-        //asjhadhjddj
+        //asjhadhjddj  vdfdfkhsvhjsdf
+        //sakjdhd
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
@@ -31,6 +32,8 @@ namespace Buisness.ActionFilters.CommandActionFilter.CustomerActionFilters
             {
                 context.Result = new UnprocessableEntityObjectResult(context.ModelState);
             }
+
+            //cdshdhhdshd
         }
     }
 }
