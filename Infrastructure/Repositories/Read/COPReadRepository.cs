@@ -18,7 +18,7 @@ namespace Infrastructure.Repositories.QueryRepositories
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<copReadDTO>> ReadCOPs(Guid CustomerPIN)
+        public async Task<IEnumerable<copReadDTO>> GetCOPsAsync(Guid CustomerPIN, CancellationToken cancellationToken)
         {
             List<COPReadModel> cops = await _companyDbContextread.ClientOrderProducts.Where(x => x.CustomerPIN == CustomerPIN).ToListAsync();
             List<copReadDTO> Responses = new();
@@ -33,7 +33,7 @@ namespace Infrastructure.Repositories.QueryRepositories
             return Responses;
         }
 
-        public async Task<copReadDTO> ReadCOP(Guid OrderCode)
+        public async Task<copReadDTO> GetCOPAsync(Guid OrderCode, CancellationToken cancellationToken)
         {
             //Validation
             CheckGuid(OrderCode);
@@ -63,6 +63,5 @@ namespace Infrastructure.Repositories.QueryRepositories
                 throw new Exception("Validation Error: The order_Code field must be guid");
             }
         }
-
     }
 }

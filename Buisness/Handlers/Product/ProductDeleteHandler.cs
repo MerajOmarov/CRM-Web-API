@@ -13,13 +13,13 @@ namespace Buisness.Handlers.ProductHandler
     {
         private readonly IMapper _mapper;
         private readonly IValidator<ProductRequestDeleteDTO> _validator;
-        private readonly IProductRepositoryRemove _repository;
+        private readonly IProductRemoveRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
 
         public ProductDeleteHandler(
             IMapper mapper,
             IValidator<ProductRequestDeleteDTO> validator,
-            IProductRepositoryRemove repository,
+            IProductRemoveRepository repository,
             IUnitOfWork unitOfWork)
         {
             _mapper = mapper;

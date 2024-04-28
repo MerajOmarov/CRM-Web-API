@@ -16,19 +16,19 @@ namespace Buisness.Handlers.Order
     {
         private readonly IMapper _mapper;
         private readonly IValidator<OrderRequestPostDTO> _validator;
-        private readonly IOrderRepositoryPost _repositoryPost;
-        private readonly ICustomerRepositoryResponse _repositoryCustomerResponse;
-        private readonly IProductRepositoryResponse _repositoryProductResponse;
-        private readonly IOrderRepositoryResponse _repositoryOrderResponse;
+        private readonly IOrderPostRepository _repositoryPost;
+        private readonly ICustomerResponseRepository _repositoryCustomerResponse;
+        private readonly IProductResponseRepository _repositoryProductResponse;
+        private readonly IOrderResponseRepository _repositoryOrderResponse;
         private readonly IUnitOfWork _unitOfWork;
 
         public OrderPostHandler(
             IMapper mapper,
             IValidator<OrderRequestPostDTO> validator,
-            IOrderRepositoryPost order_Repository_post,
-            ICustomerRepositoryResponse customer_Repository_respons,
-            IProductRepositoryResponse product_Repository_respons,
-            IOrderRepositoryResponse order_Repository_respons,
+            IOrderPostRepository order_Repository_post,
+            ICustomerResponseRepository customer_Repository_respons,
+            IProductResponseRepository product_Repository_respons,
+            IOrderResponseRepository order_Repository_respons,
             IUnitOfWork unitOfWork_Respository)
         {
             _mapper = mapper;

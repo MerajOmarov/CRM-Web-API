@@ -20,7 +20,7 @@ namespace Infrastructure.Repositories.QueryRepositories
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ProductGetDTO>> GetProducts(double? ProductPrice)
+        public async Task<IEnumerable<ProductGetDTO>> GetProductsAsync(double? ProductPrice, CancellationToken cancellationToken)
         {
             List<ProductReadModel> Products;
             if (ProductPrice!=null) 
@@ -61,16 +61,12 @@ namespace Infrastructure.Repositories.QueryRepositories
             return allResponses;
         }
 
-        public async Task<ProductDetailedReadDTO> GetProduct(Guid ProductBarcode)
+        public async Task<ProductDetailedReadDTO> GetProductAsync(Guid ProductBarcode, CancellationToken cancellationToken)
         {
             ProductDetailedReadDTO respon;
             ProductReadModel entityFromdb= await _DbContext.Products.SingleOrDefaultAsync(x=>x.Barcode==ProductBarcode);
             respon = _mapper.Map<ProductDetailedReadDTO>(entityFromdb);
             return respon;
         }
-
-
-
-        
     }
 }

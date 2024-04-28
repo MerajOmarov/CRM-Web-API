@@ -13,13 +13,13 @@ namespace Buisness.Handlers.Customer
     {
         private readonly IMapper _mapper;
         private readonly IValidator<CustomerRequestDeleteDTO> _validator;
-        private readonly ICustomerRepositoryRemove _repositoryRemove;
+        private readonly ICustomerRemoveRepository _repositoryRemove;
         private readonly IUnitOfWork _unitOfWork;
 
         public CustomerDeleteHandler(
             IMapper mapper,
             IValidator<CustomerRequestDeleteDTO> validator,
-            ICustomerRepositoryRemove repositoryRemove,
+            ICustomerRemoveRepository repositoryRemove,
             IUnitOfWork unitOfWork_Repository)
         {
             _mapper = mapper;

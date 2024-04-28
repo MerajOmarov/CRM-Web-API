@@ -14,15 +14,15 @@ namespace Buisness.Handlers.ProductHandler
     {
         private readonly IMapper _mapper;
         private readonly IValidator<ProductRequestPostDTO> _validator;
-        private readonly IProductRepositoryPost _repositoryPost;
-        private readonly IProductRepositoryResponse _repositoryResponse;
+        private readonly IProductPostRepository _repositoryPost;
+        private readonly IProductResponseRepository _repositoryResponse;
         private readonly IUnitOfWork _unitOfWork;
 
         public ProductPostHandler(
             IMapper mapper,
             IValidator<ProductRequestPostDTO> validator,
-            IProductRepositoryPost product_Repository_post,
-            IProductRepositoryResponse product_Repository_respons,
+            IProductPostRepository product_Repository_post,
+            IProductResponseRepository product_Repository_respons,
             IUnitOfWork unitOfWork_Respository)
         {
             _mapper = mapper;

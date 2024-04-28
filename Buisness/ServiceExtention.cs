@@ -84,21 +84,21 @@ namespace Buisness
 
             //REPOSITORIES//
             //Customer
-            services.AddScoped<ICustomerRepositoryPost, CustomerRepositoryPost>();
-            services.AddScoped<ICustomerRepositoryUpdate, CustomerRepositoryUpdate>();
-            services.AddScoped<ICustomerRepositoryRemove, CustomerRepositoryRemove>();
-            services.AddScoped<ICustomerRepositoryResponse, CustomerRepositoryResponse>();
+            services.AddScoped<ICustomerPostRepository, CustomerPostRepository>();
+            services.AddScoped<ICustomerUpdateRepository, CustomerUpdateRepository>();
+            services.AddScoped<ICustomerRemoveRepository, CustomerRemoveRepository>();
+            services.AddScoped<ICustomerResponseRepository, CustomerResponseRepository>();
             //Product
-            services.AddScoped<IProductRepositoryPost, ProductRepositoryPost>();
-            services.AddScoped<IProductRepositoryUpdate, ProductRepositoryUpdate>();
-            services.AddScoped<IProductRepositoryRemove, ProductRepositoryRemove>();
-            services.AddScoped<IProductRepositoryResponse, ProductRepositoryResponse>();
+            services.AddScoped<IProductPostRepository, ProductPostRepository>();
+            services.AddScoped<IProductUpdateRepository, ProductUpdateRepository>();
+            services.AddScoped<IProductRemoveRepository, ProductRemoveRepository>();
+            services.AddScoped<IProductResponseRepository, ProductResponseRepository>();
             services.AddScoped<IProductReadRepository, ProductReadRepository>();
             //Order
-            services.AddScoped<IOrderRepositoryPost, OrderRepositoryPost>();
-            services.AddScoped<IOrderRepositoryUpdate, OrderRepositoryUpdate>();
-            services.AddScoped<IOrderRepositoryRemove, OrderRepositoryRemove>();
-            services.AddScoped<IOrderRepositoryResponse, OrderRepositoryResponse>();
+            services.AddScoped<IOrderPostRepository, OrderPostRepository>();
+            services.AddScoped<IOrderUpdateRepository, OrderUpdateRepository>();
+            services.AddScoped<IOrderRemoveRepository, OrderRemoveRepository>();
+            services.AddScoped<IOrderResponseRepository, OrderResponseRepository>();
             //CustomerOrderProduct
             services.AddScoped<ICOPReadRepository, COPReadRepository>();
 

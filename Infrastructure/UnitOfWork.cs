@@ -11,16 +11,16 @@ namespace Infrastructure
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly WriteDbContext _DbContext_write;
+        private readonly WriteDbContext _dbContext;
 
-        public UnitOfWork(WriteDbContext dbContext_write)
+        public UnitOfWork(WriteDbContext dbContext)
         {
-            _DbContext_write = dbContext_write;
+            _dbContext = dbContext;
         }
 
         public Task Save(CancellationToken cancellationToken)
         {
-            return _DbContext_write.SaveChangesAsync(cancellationToken);
+            return _dbContext.SaveChangesAsync(cancellationToken);
         }
 
         

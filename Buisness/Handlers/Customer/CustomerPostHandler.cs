@@ -13,15 +13,15 @@ namespace Buisness.Handlers.Customer
     {
         private readonly IMapper _mapper;
         private readonly IValidator<CustomerRequestPostDTO> _validator;
-        private readonly ICustomerRepositoryPost _repositoryPost;
-        private readonly ICustomerRepositoryResponse _repositoryResponse;
+        private readonly ICustomerPostRepository _repositoryPost;
+        private readonly ICustomerResponseRepository _repositoryResponse;
         private readonly IUnitOfWork _unitOfWork;
 
         public CustomerPostHandler(
             IMapper mapper,
             IValidator<CustomerRequestPostDTO> validator,
-            ICustomerRepositoryPost repositoryPost,
-            ICustomerRepositoryResponse repositoryResponse,
+            ICustomerPostRepository repositoryPost,
+            ICustomerResponseRepository repositoryResponse,
             IUnitOfWork unitOfWork)
         {
            _mapper = mapper;

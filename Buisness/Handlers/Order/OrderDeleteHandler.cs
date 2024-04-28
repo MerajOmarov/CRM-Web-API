@@ -13,13 +13,13 @@ namespace Buisness.Handlers.Order
     {
         private readonly IMapper _mapper;
         private readonly IValidator<OrderRequestDeleteDTO> _validator;
-        private readonly IOrderRepositoryRemove _repositoryRemove;
+        private readonly IOrderRemoveRepository _repositoryRemove;
         private readonly IUnitOfWork _unitOfWork;
 
         public OrderDeleteHandler(
             IMapper mapper,
             IValidator<OrderRequestDeleteDTO> validator,
-            IOrderRepositoryRemove repositoryRemove,
+            IOrderRemoveRepository repositoryRemove,
             IUnitOfWork unitOfWork)
         {
             _mapper = mapper;

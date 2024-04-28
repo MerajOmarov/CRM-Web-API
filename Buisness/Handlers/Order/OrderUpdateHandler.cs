@@ -15,17 +15,17 @@ namespace Buisness.Handlers.Order
     {
         private readonly IMapper _mapper;
         private readonly IValidator<OrderRequestUpdateDTO> _validator;
-        private readonly IOrderRepositoryUpdate _repositoryUpdate;
-        private readonly IOrderRepositoryResponse _repositoryOrderResponse;
-        private readonly IProductRepositoryResponse _repositoryProductResponse;
-        private readonly ICustomerRepositoryResponse _repositoryCustomerResponse;
+        private readonly IOrderUpdateRepository _repositoryUpdate;
+        private readonly IOrderResponseRepository _repositoryOrderResponse;
+        private readonly IProductResponseRepository _repositoryProductResponse;
+        private readonly ICustomerResponseRepository _repositoryCustomerResponse;
         private readonly IUnitOfWork _unitOfWork_Repository;
 
         public OrderUpdateHandler(IMapper mapper, IValidator<OrderRequestUpdateDTO> validator,
-                                  IOrderRepositoryUpdate repositoryUpdate,
-                                  IOrderRepositoryResponse repositoryOrderResponse,
-                                  IProductRepositoryResponse repositoryProductResponse,
-                                  ICustomerRepositoryResponse customer_Repository_respons,
+                                  IOrderUpdateRepository repositoryUpdate,
+                                  IOrderResponseRepository repositoryOrderResponse,
+                                  IProductResponseRepository repositoryProductResponse,
+                                  ICustomerResponseRepository customer_Repository_respons,
                                   IUnitOfWork unitOfWork_Repository)
         {
             _mapper = mapper;
