@@ -22,7 +22,7 @@ namespace Infrastructure.Migrations._client_DbContext_readMigrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domen.JWTModels._jwt_ApplicationUser", b =>
+            modelBuilder.Entity("Domen.JWTModels.JwtApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -47,6 +47,10 @@ namespace Infrastructure.Migrations._client_DbContext_readMigrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -67,20 +71,16 @@ namespace Infrastructure.Migrations._client_DbContext_readMigrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Sername")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sername")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -95,7 +95,7 @@ namespace Infrastructure.Migrations._client_DbContext_readMigrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Domen.Models.QueryModel._product_Model_read", b =>
+            modelBuilder.Entity("Domen.Models.QueryModel.ProductReadModel", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -139,7 +139,7 @@ namespace Infrastructure.Migrations._client_DbContext_readMigrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("All_products_Model_read");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -286,7 +286,7 @@ namespace Infrastructure.Migrations._client_DbContext_readMigrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Domen.JWTModels._jwt_ApplicationUser", null)
+                    b.HasOne("Domen.JWTModels.JwtApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -295,7 +295,7 @@ namespace Infrastructure.Migrations._client_DbContext_readMigrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Domen.JWTModels._jwt_ApplicationUser", null)
+                    b.HasOne("Domen.JWTModels.JwtApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -310,7 +310,7 @@ namespace Infrastructure.Migrations._client_DbContext_readMigrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domen.JWTModels._jwt_ApplicationUser", null)
+                    b.HasOne("Domen.JWTModels.JwtApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -319,7 +319,7 @@ namespace Infrastructure.Migrations._client_DbContext_readMigrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Domen.JWTModels._jwt_ApplicationUser", null)
+                    b.HasOne("Domen.JWTModels.JwtApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

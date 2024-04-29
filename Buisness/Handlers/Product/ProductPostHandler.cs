@@ -1,6 +1,6 @@
 ﻿
 using Abstraction;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_product;
+using Abstraction.Abstractions.Write.Product;
 using AutoMapper;
 using Buisness.DTOs.CommandDTOs.Product;
 using Domen.DTOs.CommandDTOs.ProductDTOs;
@@ -45,24 +45,24 @@ namespace Buisness.Handlers.ProductHandler
                     throw new Exception($"Validation Error: {error.ErrorMessage} for the property: {error.PropertyName}");
                 }
             }
+
             //Mapping DTO to Entity
             var productTodb = _mapper.Map<ProductWriteModel>(request);
 
             // Adding to database
-            await _repositoryPost.PostProduct(productTodb);
+            await _repositoryPost.PostProductAsync(productTodb, cancellationToken);
 
             //Saving changes
-            await _unitOfWork.Save(cancellationToken);
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             //Result
-            var productFromdb = await _repositoryResponse.ResponseProduct(productTodb.Barcode);
+            var productFromdb = await _repositoryResponse.ResponseProductAsync(productTodb.Barcode,cancellationToken);
 
             // Mapping Entity to DTO
             var response = _mapper.Map<ProductResponsePostDTO>(productFromdb);
 
-            //Respons
+            //Response
             return response;
-
         }
     }
 }

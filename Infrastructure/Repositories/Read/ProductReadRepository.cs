@@ -1,5 +1,4 @@
-﻿
-using Abstraction.Abstractions._read_Abstractions;
+﻿using Abstraction.Abstractions.Read;
 using AutoMapper;
 using Domen.DTOs._read_DTOs;
 using Domen.DTOs.QueryDTO;
@@ -23,6 +22,7 @@ namespace Infrastructure.Repositories.QueryRepositories
         public async Task<IEnumerable<ProductGetDTO>> GetProductsAsync(double? ProductPrice, CancellationToken cancellationToken)
         {
             List<ProductReadModel> Products;
+
             if (ProductPrice!=null) 
             {
                 Products = await _DbContext.Products
@@ -49,12 +49,16 @@ namespace Infrastructure.Repositories.QueryRepositories
               .ToListAsync();
             }
             
-            List<ProductGetDTO> allResponses = new();
+            List<ProductGetDTO> allResponses = new();  
+
             ProductGetDTO response;
+
             int countOfallEltitiesFromDb = Products.Count;
+
             for (int i = 0; i < countOfallEltitiesFromDb; i++)
             {
                 response = _mapper.Map<ProductGetDTO>(Products[i]);
+
                 allResponses.Add(response);
             }
 
@@ -63,10 +67,14 @@ namespace Infrastructure.Repositories.QueryRepositories
 
         public async Task<ProductDetailedReadDTO> GetProductAsync(Guid ProductBarcode, CancellationToken cancellationToken)
         {
-            ProductDetailedReadDTO respon;
-            ProductReadModel entityFromdb= await _DbContext.Products.SingleOrDefaultAsync(x=>x.Barcode==ProductBarcode);
-            respon = _mapper.Map<ProductDetailedReadDTO>(entityFromdb);
-            return respon;
+            ProductDetailedReadDTO response;
+
+            ProductReadModel? entityFromdb= await _DbContext.Products
+                .SingleOrDefaultAsync(x=>x.Barcode==ProductBarcode);
+
+            response = _mapper.Map<ProductDetailedReadDTO>(entityFromdb);
+
+            return response;
         }
     }
 }

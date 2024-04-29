@@ -9,6 +9,6 @@ namespace Abstraction
 {
     public interface IUnitOfWork
     {
-        public Task Save(CancellationToken cancellationToken);
+        public Task SaveAsync(CancellationToken cancellationToken);
     }
 }

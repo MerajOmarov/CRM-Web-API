@@ -1,10 +1,5 @@
 ﻿using Buisness.DTOs.Command.Product;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Buisness.FluentValidations.Product
 {
@@ -24,6 +19,7 @@ namespace Buisness.FluentValidations.Product
             .NotEmpty().WithMessage("Validation Error: The Price field can not be null")
             .Must(BeAnDouble).WithMessage("Validation Error: The Price field must be double");
         }
+
         private bool BeAnGuid(Guid guid)
         {
             return guid.GetType() == typeof(Guid);

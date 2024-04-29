@@ -23,7 +23,6 @@ namespace Buisness.FluentValidations.Order
             RuleFor(x => x.newCode)
             .NotEmpty().WithMessage("Validation Error: The newCode field can not be null")
             .Must(BeAnGuid).WithMessage("Validation Error: The newCode field must be guid");
-
         }
 
         private bool BeAnDatetime(DateTime time)

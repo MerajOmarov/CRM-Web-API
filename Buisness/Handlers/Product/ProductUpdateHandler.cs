@@ -1,6 +1,6 @@
 ﻿
 using Abstraction;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_product;
+using Abstraction.Abstractions.Write.Product;
 using AutoMapper;
 using Buisness.DTOs.Command.Product;
 using Domen.DTOs.CommandDTOs.ProductDTOs;
@@ -44,18 +44,21 @@ namespace Buisness.Handlers.ProductHandler
             }
 
             // Updating to database
-            await _repositoryUpdate.UpdateProduct(request.OldBarcode, request.NewBarcode, request.NewPrice);
+            await _repositoryUpdate.UpdateProductAsync(request.OldBarcode,
+                                                       request.NewBarcode,
+                                                       request.NewPrice,
+                                                       cancellationToken);
 
             //Saving changes
-            await _unitOfWork.Save(cancellationToken);
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             //Result
-            var productFromdb = await _repositoryResponse.ResponseProduct(request.NewBarcode);
+            var productFromdb = await _repositoryResponse.ResponseProductAsync(request.NewBarcode, cancellationToken);
 
             // Mapping Entity to DTO
             var response = _mapper.Map<ProductResponseUpdateDTO>(productFromdb);
 
-            //Respons
+            //Response
             return response;
         }
     }

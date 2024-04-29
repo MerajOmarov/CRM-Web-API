@@ -5,9 +5,10 @@ namespace Abstraction
 {
     public  interface IJwtAuthRepository
     {
-        Task<(int, string)> JwtRegistration(JwtRegistrationRequestDTO jwt_RegistrationDTO_Request, string role);
-        Task<(int, string)> JwtLogin(JwtLoginDTO Jwt_LoginDTO);
-
-        //ackhdlihyvdlihh
+        Task<(int, string)> JwtRegistrationAsync(JwtRegistrationRequestDTO registration,
+                                                 string role,
+                                                 CancellationToken cancellationToken);
+        Task<(int, string)> JwtLoginAsync(JwtLoginDTO Login,
+                                          CancellationToken cancellationToken);
     }
 }

@@ -18,11 +18,9 @@ namespace Infrastructure
             _dbContext = dbContext;
         }
 
-        public Task Save(CancellationToken cancellationToken)
+        public Task SaveAsync(CancellationToken cancellationToken)
         {
             return _dbContext.SaveChangesAsync(cancellationToken);
         }
-
-        
     }
 }

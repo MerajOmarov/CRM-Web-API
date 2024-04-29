@@ -20,6 +20,7 @@ namespace Presentation.Controllers.Write.Product
         public async Task<IActionResult> Post([FromBody] ProductRequestPostDTO request, CancellationToken cancellation)
         {
             var respons = await _mediator.Send(request, cancellation);
+
             return Ok(respons);
         }
 
@@ -27,6 +28,7 @@ namespace Presentation.Controllers.Write.Product
         public async Task<IActionResult> Put([FromBody] ProductRequestUpdateDTO request, CancellationToken cancellation)
         {
             var respons = await _mediator.Send(request, cancellation);
+
             return Ok(respons);
         }
 
@@ -34,6 +36,7 @@ namespace Presentation.Controllers.Write.Product
         public async Task<IActionResult> Delete([FromBody] ProductRequestDeleteDTO request, CancellationToken cancellation)
         {
             var respons = await _mediator.Send(request, cancellation);
+
             return Ok(respons);
         }
     }

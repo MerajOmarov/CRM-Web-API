@@ -23,15 +23,17 @@ namespace Infrastructure
             _configuration = configuration;
         }
 
-        public async Task<(int, string)> JwtLogin(JwtLoginDTO Login)
+        public async Task<(int, string)> JwtLoginAsync(JwtLoginDTO Login, CancellationToken cancellationToken)
         {
-            var user = await _userManager.FindByNameAsync(Login.Username);
-            if (user == null)
+            var user = await _userManager.FindByNameAsync(Login.Username); 
+
+            if (user == null) 
                 return (0, "Invalid username");
             if (!await _userManager.CheckPasswordAsync(user, Login.Password))
                 return (0, "Invalid password");
 
             var userRoles = await _userManager.GetRolesAsync(user);
+
             var authClaims = new List<Claim>
             {
                new Claim(ClaimTypes.Name, user.UserName),
@@ -42,13 +44,16 @@ namespace Infrastructure
             {
                 authClaims.Add(new Claim(ClaimTypes.Role, userRole));
             }
+
             string token = GenerateToken(authClaims);
+
             return (1, token);
         }
 
-        public async Task<(int, string)> JwtRegistration(JwtRegistrationRequestDTO Request, string role)
+        public async Task<(int, string)> JwtRegistrationAsync(JwtRegistrationRequestDTO Request, string role, CancellationToken cancellationToken)
         {
             var userExists = await _userManager.FindByNameAsync(Request.Username);
+
             if (userExists != null)
                 return (0, "User already exists");
 
@@ -59,7 +64,9 @@ namespace Infrastructure
                 UserName = Request.Username,
                 Name = Request.Name
             };
+
             var createUserResult = await _userManager.CreateAsync(user, Request.Password);
+
             if (!createUserResult.Succeeded)
                 return (0, "User creation failed! Please check user details and try again.");
 
@@ -83,9 +90,10 @@ namespace Infrastructure
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
+
             var token = tokenHandler.CreateToken(tokenDescriptor);
+
             return tokenHandler.WriteToken(token);
         }
     }   
-
 }

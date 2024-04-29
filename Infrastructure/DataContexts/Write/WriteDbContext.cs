@@ -25,6 +25,7 @@ namespace Infrastructure.DataContexts.CommandDbContext
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
             builder.Entity<CustomerWriteModel>()
                    .HasMany(t => t.OrdersOfCustomer)
                    .WithOne(s => s.Customer)
@@ -44,8 +45,6 @@ namespace Infrastructure.DataContexts.CommandDbContext
                    .ToTable(tb => tb.HasTrigger("_order_InsertTrigger"))
                    .ToTable(tb => tb.HasTrigger("_order_UpdateTrigger"))
                    .ToTable(tb => tb.HasTrigger("_order_RemoveTrigger"));
-        
-
 
         }
     }

@@ -1,36 +1,28 @@
 ﻿using Abstraction;
-using Infrastructure.Repositories.CommandRepositories;
-using Infrastructure.Repositories.QueryRepositories;
-using Infrastructure;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
+using Abstraction.Abstractions.Read;
+using Abstraction.Abstractions.Write.Customer;
+using Abstraction.Abstractions.Write.Order;
+using Abstraction.Abstractions.Write.Product;
+using Buisness.ActionFilters.CommandActionFilter.CustomerActionFilters;
+using Buisness.Buisness.FluentValidations.Customer;
 using Buisness.DTOs.Command.Customer;
 using Buisness.DTOs.Command.Order;
-using Buisness.DTOs.CommandDTOs.Product;
-using Buisness.ActionFilters.CommandActionFilter.CustomerActionFilters;
-using Domen.DTOs.QueryDTO;
-using Domen.DTOs.CommandDTOs.CustomerDTOs;
-using Domen.DTOs.CommandDTOs.OrderDTOs;
 using Buisness.DTOs.Command.Product;
-using Domen.DTOs.CommandDTOs.ProductDTOs;
-using Infrastructure.Repositories.CommandRepositories.CustomerRepository;
-using Infrastructure.Repositories.CommandRepositories.ProductRepository;
-using Infrastructure.Repositories.CommandRepositories.OrderRepository;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_customer;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_order;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_product;
-using Abstraction.Abstractions._read_Abstractions;
+using Buisness.DTOs.CommandDTOs.Product;
 using Buisness.FluentValidations.Customer;
-using Buisness.Buisness.FluentValidations.Customer;
 using Buisness.FluentValidations.Order;
 using Buisness.FluentValidations.Product;
+using Domen.DTOs.CommandDTOs.CustomerDTOs;
+using Domen.DTOs.CommandDTOs.OrderDTOs;
+using Domen.DTOs.CommandDTOs.ProductDTOs;
+using FluentValidation;
+using Infrastructure;
+using Infrastructure.Repositories.CommandRepositories.CustomerRepository;
+using Infrastructure.Repositories.CommandRepositories.OrderRepository;
+using Infrastructure.Repositories.CommandRepositories.ProductRepository;
+using Infrastructure.Repositories.QueryRepositories;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Buisness
 {
@@ -58,6 +50,8 @@ namespace Buisness
 
             services.AddValidatorsFromAssemblyContaining<CustomerRemoveDTOValidation>();
             services.AddScoped<IValidator<CustomerRequestDeleteDTO>, CustomerRemoveDTOValidation>();
+
+
             //Order
             services.AddValidatorsFromAssemblyContaining<OrderPostDTOValidation>();
             services.AddScoped<IValidator<OrderRequestPostDTO>, OrderPostDTOValidation>();
@@ -67,6 +61,8 @@ namespace Buisness
 
             services.AddValidatorsFromAssemblyContaining<OrderDeleteDTOValidation>();
             services.AddScoped<IValidator<OrderRequestDeleteDTO>, OrderDeleteDTOValidation>();
+
+
             //Product
             services.AddValidatorsFromAssemblyContaining<ProductPostDTOValidation>();
             services.AddScoped<IValidator<ProductRequestPostDTO>, ProductPostDTOValidation>();
@@ -85,20 +81,36 @@ namespace Buisness
             //REPOSITORIES//
             //Customer
             services.AddScoped<ICustomerPostRepository, CustomerPostRepository>();
+
             services.AddScoped<ICustomerUpdateRepository, CustomerUpdateRepository>();
+
             services.AddScoped<ICustomerRemoveRepository, CustomerRemoveRepository>();
+
             services.AddScoped<ICustomerResponseRepository, CustomerResponseRepository>();
+
+
             //Product
             services.AddScoped<IProductPostRepository, ProductPostRepository>();
+
             services.AddScoped<IProductUpdateRepository, ProductUpdateRepository>();
+
             services.AddScoped<IProductRemoveRepository, ProductRemoveRepository>();
+
             services.AddScoped<IProductResponseRepository, ProductResponseRepository>();
+
             services.AddScoped<IProductReadRepository, ProductReadRepository>();
+
+
             //Order
             services.AddScoped<IOrderPostRepository, OrderPostRepository>();
+
             services.AddScoped<IOrderUpdateRepository, OrderUpdateRepository>();
+
             services.AddScoped<IOrderRemoveRepository, OrderRemoveRepository>();
+
             services.AddScoped<IOrderResponseRepository, OrderResponseRepository>();
+
+
             //CustomerOrderProduct
             services.AddScoped<ICOPReadRepository, COPReadRepository>();
 

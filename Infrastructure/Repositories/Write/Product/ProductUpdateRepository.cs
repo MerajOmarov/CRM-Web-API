@@ -1,12 +1,5 @@
-﻿using Abstraction.Abstractions._write_Abstractions._write_Abstractions_product;
+﻿using Abstraction.Abstractions.Write.Product;
 using Domen.Models.CommandModels;
-using FluentValidation.Validators;
-using Infrastructure.DataContexts.CommandDbContext;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories.CommandRepositories.ProductRepository
 {
@@ -19,9 +12,12 @@ namespace Infrastructure.Repositories.CommandRepositories.ProductRepository
             _response = response;
         }
 
-        public async Task UpdateProduct(Guid oldProductBarcode, Guid? newProductBarcode, double? newProductPrice)
+        public async Task UpdateProductAsync(Guid oldProductBarcode,
+                                             Guid? newProductBarcode,
+                                             double? newProductPrice,
+                                             CancellationToken cancellationToken)
         {
-            ProductWriteModel product = await _response.ResponseProduct(oldProductBarcode);
+            ProductWriteModel product = await _response.ResponseProductAsync(oldProductBarcode, cancellationToken);
 
             if (newProductBarcode.HasValue)
                 product.Barcode = newProductBarcode.Value;

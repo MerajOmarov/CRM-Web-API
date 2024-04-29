@@ -1,12 +1,7 @@
-﻿using Abstraction.Abstractions._write_Abstractions._write_Abstractions_product;
+﻿using Abstraction.Abstractions.Write.Product;
 using Domen.Models.CommandModels;
 using Infrastructure.DataContexts.CommandDbContext;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories.CommandRepositories.ProductRepository
 {
@@ -19,11 +14,10 @@ namespace Infrastructure.Repositories.CommandRepositories.ProductRepository
             _dbContext = dbContext;
         }
 
-        public async Task<ProductWriteModel> ResponseProduct(Guid productBarcode)
+        public async Task<ProductWriteModel> ResponseProductAsync(Guid productBarcode,CancellationToken cancellationToken)
         {
             ProductWriteModel product= await _dbContext.Products.SingleOrDefaultAsync(x => x.Barcode == productBarcode);
             return product;
         }
-
     }
 }

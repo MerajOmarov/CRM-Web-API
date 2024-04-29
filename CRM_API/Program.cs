@@ -1,15 +1,14 @@
 
+using Buisness;
 using Domen.JWTModels;
+using Infrastructure.DataContexts.CommandDbContext;
+using Infrastructure.DataContexts.QueryDbContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Reflection;
 using System.Text;
-using Buisness;
-using Infrastructure.DataContexts.CommandDbContext;
-using Infrastructure.DataContexts.QueryDbContext;
 
 
 namespace CRM_API
@@ -22,12 +21,17 @@ namespace CRM_API
 
             // Add services to the container.
             builder.Services.AddDbContext<WriteDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("_command_Connection")));
+
             builder.Services.AddDbContext<ClientReadDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("_query_client_Connection")));
+
             builder.Services.AddDbContext<CompanyReadDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("_query_company_Connection")));
+
             builder.Services.AddControllers();
+
             builder.Services.ConfigureBuisness();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
+
+            builder.Services.AddEndpointsApiExplorer(); 
+
             builder.Services.AddSwaggerGen(opt =>
             {
                 opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -54,11 +58,13 @@ namespace CRM_API
                         new List<string>()
                     }
                 });
-            });
+            }); 
+
             // For Identity  
             builder.Services.AddIdentity<JwtApplicationUser, IdentityRole>()
                             .AddEntityFrameworkStores<WriteDbContext>()
                             .AddDefaultTokenProviders();
+
             // Adding Authentication  
             builder.Services.AddAuthentication(options =>
             {
@@ -66,6 +72,7 @@ namespace CRM_API
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
+
             // Adding Jwt Bearer
             .AddJwtBearer(options =>
             {
@@ -88,13 +95,13 @@ namespace CRM_API
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
+
                 app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

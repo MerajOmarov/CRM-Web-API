@@ -1,8 +1,8 @@
 ﻿
 using Abstraction;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_customer;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_order;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_product;
+using Abstraction.Abstractions.Write.Customer;
+using Abstraction.Abstractions.Write.Order;
+using Abstraction.Abstractions.Write.Product;
 using AutoMapper;
 using Buisness.DTOs.Command.Order;
 using Domen.DTOs.CommandDTOs.OrderDTOs;
@@ -52,20 +52,26 @@ namespace Buisness.Handlers.Order
             }
 
             // Updating to database
-            await _repositoryUpdate.UpdateOrder(request.oldCode, request.newCode, request.newDeedline);
+            await _repositoryUpdate.UpdateOrderAsync(request.oldCode,
+                                                     request.newCode,
+                                                     request.newDeedline,
+                                                     cancellationToken);
 
             //Saving changes
-            await _unitOfWork_Repository.Save(cancellationToken);
+            await _unitOfWork_Repository.SaveAsync(cancellationToken);
 
             //Result
-            var orderFromdb = await _repositoryOrderResponse.ResponseOrder(request.newCode);
+            var orderFromdb = await _repositoryOrderResponse.ResponseOrderAsync(request.newCode,
+                                                                                cancellationToken);
 
             // Mapping Entity to DTO
             var response = _mapper.Map<OrderResponseUpdateDTO>(orderFromdb);
 
-            var customer = await _repositoryCustomerResponse.ResponseCustomer(orderFromdb.CustomerPIN);
+            var customer = await _repositoryCustomerResponse.ResponseCustomerAsync(orderFromdb.CustomerPIN,
+                                                                                   cancellationToken);
 
-            var product = await _repositoryProductResponse.ResponseProduct(orderFromdb.ProductBarcode);
+            var product = await _repositoryProductResponse.ResponseProductAsync(orderFromdb.ProductBarcode,
+                                                                                cancellationToken);
 
             response.CustomerName = customer.Name;
 

@@ -1,11 +1,6 @@
-﻿using Abstraction.Abstractions._write_Abstractions._write_Abstractions_product;
+﻿using Abstraction.Abstractions.Write.Product;
 using Domen.Models.CommandModels;
 using Infrastructure.DataContexts.CommandDbContext;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories.CommandRepositories.ProductRepository
 {
@@ -20,9 +15,10 @@ namespace Infrastructure.Repositories.CommandRepositories.ProductRepository
             _response = response;
         }
 
-        public async Task<ProductWriteModel> RemoveProduct(Guid ProductBarcode)
+        public async Task<ProductWriteModel> RemoveProductAsync(Guid ProductBarcode,
+                                                                CancellationToken cancellationToken)
         {
-            ProductWriteModel product = await _response.ResponseProduct(ProductBarcode);
+            ProductWriteModel product = await _response.ResponseProductAsync(ProductBarcode, cancellationToken);
 
             _dbContext.Products.Remove(product);
 

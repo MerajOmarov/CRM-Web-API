@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Buisness.DTOs.Query
 {
-    public class copReadDTO
+    public class COPReadDTO
     {
         public Guid CustomerPIN { get; set; }
         public string CustomerName { get; set; }

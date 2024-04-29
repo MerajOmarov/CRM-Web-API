@@ -1,5 +1,5 @@
 ﻿using Abstraction;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_customer;
+using Abstraction.Abstractions.Write.Customer;
 using AutoMapper;
 using Buisness.DTOs.Command.Customer;
 using Buisness.DTOs.CommandDTOs.Customer;
@@ -49,18 +49,18 @@ namespace Buisness.Handlers.Customer
             var customerTodb = _mapper.Map<CustomerWriteModel>(request);
 
             // Adding to database
-            await _repositoryPost.PostCustomer(customerTodb);
+            await _repositoryPost.PostCustomerAsync(customerTodb, cancellationToken);
 
             //Saving changes
-            await _unitOfWork.Save(cancellationToken);
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             //Result
-            var customerFromdb = await _repositoryResponse.ResponseCustomer(customerTodb.PIN);
+            var customerFromdb = await _repositoryResponse.ResponseCustomerAsync(customerTodb.PIN,cancellationToken);
 
             // Mapping Entity to DTO
             var response = _mapper.Map<CustomerResponsePostDTO>(customerFromdb);
 
-            //Respons
+            //Response
             return response;
         }
     }

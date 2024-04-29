@@ -1,8 +1,8 @@
 ﻿
 using Abstraction;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_customer;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_order;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_product;
+using Abstraction.Abstractions.Write.Customer;
+using Abstraction.Abstractions.Write.Order;
+using Abstraction.Abstractions.Write.Product;
 using AutoMapper;
 using Buisness.DTOs.Command.Order;
 using Buisness.DTOs.CommandDTOs.Order;
@@ -58,22 +58,24 @@ namespace Buisness.Handlers.Order
             //Mapping DTO to Entity
             var orderTodb = _mapper.Map<OrderWriteModel>(request);
 
-            var customerToOrder = await _repositoryCustomerResponse.ResponseCustomer(request.CustomerPIN);
+            var customerToOrder = await _repositoryCustomerResponse.ResponseCustomerAsync(request.CustomerPIN,
+                                                                                          cancellationToken);
 
-            var productToOrder = await _repositoryProductResponse.ResponseProduct(request.ProductBarcode);
+            var productToOrder = await _repositoryProductResponse.ResponseProductAsync(request.ProductBarcode,
+                                                                                       cancellationToken);
 
             orderTodb.CustomerID = customerToOrder.ID;
 
             orderTodb.productID = productToOrder.ID;
 
             // Adding to database
-            await _repositoryPost.PostOrder(orderTodb);
+            await _repositoryPost.PostOrderAsync(orderTodb, cancellationToken);
 
             //Saving changes
-            await _unitOfWork.Save(cancellationToken);
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             //Result
-            var orderFromdb = await _repositoryOrderResponse.ResponseOrder(orderTodb.Code);
+            var orderFromdb = await _repositoryOrderResponse.ResponseOrderAsync(orderTodb.Code, cancellationToken);
 
             // Mapping Entity to DTO
             var response = _mapper.Map<OrderResponsePostDTO>(orderFromdb);
@@ -82,7 +84,7 @@ namespace Buisness.Handlers.Order
 
             response.ProductName = productToOrder.Name;
 
-            //Respons
+            //Response
             return response;
         }
     }

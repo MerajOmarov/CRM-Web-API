@@ -1,4 +1,4 @@
-﻿using Abstraction.Abstractions._read_Abstractions;
+﻿using Abstraction.Abstractions.Read;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers.Read.COPCompany

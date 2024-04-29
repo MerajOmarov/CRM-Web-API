@@ -1,11 +1,6 @@
-﻿using Abstraction.Abstractions._write_Abstractions._write_Abstractions_customer;
+﻿using Abstraction.Abstractions.Write.Customer;
 using Domen.Models.CommandModels;
 using Infrastructure.DataContexts.CommandDbContext;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories.CommandRepositories.CustomerRepository
 {
@@ -20,10 +15,13 @@ namespace Infrastructure.Repositories.CommandRepositories.CustomerRepository
             _response = response;
         }
 
-        public async Task<CustomerWriteModel> RemoveCustomer(Guid customerPIN)
+        public async Task<CustomerWriteModel> RemoveCustomerAsync(Guid customerPIN,
+                                                                  CancellationToken cancellationToken)
         {
-            CustomerWriteModel customer = await _response.ResponseCustomer(customerPIN);
+            CustomerWriteModel customer = await _response.ResponseCustomerAsync(customerPIN, cancellationToken);
+
             _dbContext.Customers.Remove(customer);
+
             return customer;
         }
     }

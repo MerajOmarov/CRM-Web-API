@@ -1,11 +1,5 @@
-﻿using Abstraction.Abstractions._write_Abstractions._write_Abstractions_order;
+﻿using Abstraction.Abstractions.Write.Order;
 using Domen.Models.CommandModels;
-using Infrastructure.DataContexts.CommandDbContext;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories.CommandRepositories.OrderRepository
 {
@@ -19,9 +13,12 @@ namespace Infrastructure.Repositories.CommandRepositories.OrderRepository
             _response = response;
         }
 
-        public async Task UpdateOrder(Guid oldOrderCode, Guid newOrderCode, DateTime newOrderDeedline)
+        public async Task UpdateOrderAsync(Guid oldOrderCode,
+                                           Guid newOrderCode,
+                                           DateTime newOrderDeedline,
+                                           CancellationToken cancellationToken)
         {
-            OrderWriteModel order = await _response.ResponseOrder(oldOrderCode);
+            OrderWriteModel order = await _response.ResponseOrderAsync(oldOrderCode, cancellationToken);
 
             order.Code = newOrderCode;
 

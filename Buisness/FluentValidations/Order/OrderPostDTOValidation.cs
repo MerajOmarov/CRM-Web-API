@@ -1,10 +1,5 @@
 ﻿using Buisness.DTOs.Command.Order;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Buisness.FluentValidations.Order
 {
@@ -16,26 +11,21 @@ namespace Buisness.FluentValidations.Order
             .NotEmpty().WithMessage("Validation Error: The Deedline field can not be null")
             .Must(BeAnDatetime).WithMessage("Validation Error: The Deedline field must be datetime");
 
-
             RuleFor(x => x.CreatedTime)
             .NotEmpty().WithMessage("Validation Error: The CreatedTime field can not be null")
             .Must(BeAnDatetime).WithMessage("Validation Error: The CreatedTime field must be datetime");
-
 
             RuleFor(x => x.Code)
             .NotEmpty().WithMessage("Validation Error: The Code field can not be null")
             .Must(BeAnGuid).WithMessage("Validation Error: The Code field must be guid");
 
-
             RuleFor(x => x.ProductBarcode)
             .NotEmpty().WithMessage("Validation Error: The ProductBarcode field can not be null")
             .Must(BeAnGuid).WithMessage("Validation Error: The ProductBarcode field must be guid");
 
-
             RuleFor(x => x.CustomerPIN)
             .NotEmpty().WithMessage("Validation Error: The CustomerPIN field can not be null")
             .Must(BeAnGuid).WithMessage("Validation Error: The CustomerPIN field must be guid");
-
         }
 
         private bool BeAnDatetime(DateTime time)
@@ -46,6 +36,5 @@ namespace Buisness.FluentValidations.Order
         {
             return guid.GetType() == typeof(Guid);
         }
-
     }
 }

@@ -1,13 +1,7 @@
-﻿
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_customer;
+﻿using Abstraction.Abstractions.Write.Customer;
 using Domen.Models.CommandModels;
 using Infrastructure.DataContexts.CommandDbContext;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories.CommandRepositories.CustomerRepository
 {
@@ -19,20 +13,14 @@ namespace Infrastructure.Repositories.CommandRepositories.CustomerRepository
             _dbContext = dbContext;
         }
 
-
-        public async Task PostCustomer(CustomerWriteModel customer)
+        public async Task PostCustomerAsync(CustomerWriteModel customer, CancellationToken cancellationToken)
         {
-            //CustomerWriteModel? customer;
             var result = await _dbContext.Customers.SingleOrDefaultAsync(x => x.PIN == customer.PIN);
 
             if (result != null)
-            {
                 throw new Exception("ResponsCustomer Error: The customer with this guid have already exists in database, use different guid");
-            }
+
             await _dbContext.Customers.AddAsync(customer);
         }
     }
-
-    
-
 }

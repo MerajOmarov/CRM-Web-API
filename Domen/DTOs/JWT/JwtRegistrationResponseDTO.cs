@@ -11,6 +11,5 @@ namespace Domen.DTOs.JWT
         public string Name { get; set; }
         public string Sername { get; set; }
         public Guid Id { get; set; }
-
     }
 }

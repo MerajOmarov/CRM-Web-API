@@ -1,12 +1,4 @@
-﻿using Abstraction.Abstractions._write_Abstractions._write_Abstractions_customer;
-using Domen.Models.CommandModels;
-using Infrastructure.DataContexts.CommandDbContext;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Abstraction.Abstractions.Write.Customer;
 
 namespace Infrastructure.Repositories.CommandRepositories.CustomerRepository
 {
@@ -19,9 +11,12 @@ namespace Infrastructure.Repositories.CommandRepositories.CustomerRepository
             _response = response;
         }
 
-        public async Task UpdateCustomer(Guid oldCustomerPIN, Guid newCustomerPIN)
+        public async Task UpdateCustomerAsync(Guid oldCustomerPIN,
+                                              Guid newCustomerPIN,
+                                              CancellationToken cancellationToken)
         {
-            var customer = await _response.ResponseCustomer(oldCustomerPIN);
+            var customer = await _response.ResponseCustomerAsync(oldCustomerPIN, cancellationToken);
+
             customer.PIN = newCustomerPIN;
         }
     }

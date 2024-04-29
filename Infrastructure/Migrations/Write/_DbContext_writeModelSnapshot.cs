@@ -22,7 +22,7 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domen.JWTModels._jwt_ApplicationUser", b =>
+            modelBuilder.Entity("Domen.JWTModels.JwtApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -47,6 +47,10 @@ namespace Infrastructure.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -67,20 +71,16 @@ namespace Infrastructure.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Sername")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sername")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -95,7 +95,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Domen.Models.CommandModels._customer_Model_write", b =>
+            modelBuilder.Entity("Domen.Models.CommandModels.CustomerWriteModel", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -119,10 +119,10 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("All_customers_Model_write");
+                    b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("Domen.Models.CommandModels._order_Model_write", b =>
+            modelBuilder.Entity("Domen.Models.CommandModels.OrderWriteModel", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -130,44 +130,44 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("ID")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("Code")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Deedline")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("CustomerPIN")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("Deedline")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("ProductBarcode")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("ID")
+                    b.Property<int>("productID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ID");
+                    b.HasIndex("CustomerID");
 
-                    b.HasIndex("ID");
+                    b.HasIndex("productID");
 
-                    b.ToTable("All_orders_Model_write", t =>
+                    b.ToTable("Orders", t =>
                         {
-                            t.HasTrigger("order_DeleteTrigger");
+                            t.HasTrigger("_order_InsertTrigger");
 
-                            t.HasTrigger("order_InsertTrigger");
+                            t.HasTrigger("_order_RemoveTrigger");
 
-                            t.HasTrigger("product_InsertTrigger");
+                            t.HasTrigger("_order_UpdateTrigger");
                         });
                 });
 
-            modelBuilder.Entity("Domen.Models.CommandModels._product_Model_write", b =>
+            modelBuilder.Entity("Domen.Models.CommandModels.ProductWriteModel", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -214,7 +214,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("All_products_Model_write", t =>
+                    b.ToTable("Products", t =>
                         {
                             t.HasTrigger("_product_InsertTrigger");
 
@@ -357,17 +357,17 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Domen.Models.CommandModels._order_Model_write", b =>
+            modelBuilder.Entity("Domen.Models.CommandModels.OrderWriteModel", b =>
                 {
-                    b.HasOne("Domen.Models.CommandModels._customer_Model_write", "Customer")
+                    b.HasOne("Domen.Models.CommandModels.CustomerWriteModel", "Customer")
                         .WithMany("OrdersOfCustomer")
-                        .HasForeignKey("ID")
+                        .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domen.Models.CommandModels._product_Model_write", "Product")
+                    b.HasOne("Domen.Models.CommandModels.ProductWriteModel", "Product")
                         .WithMany("OrdersOfproduct")
-                        .HasForeignKey("ID")
+                        .HasForeignKey("productID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -387,7 +387,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Domen.JWTModels._jwt_ApplicationUser", null)
+                    b.HasOne("Domen.JWTModels.JwtApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -396,7 +396,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Domen.JWTModels._jwt_ApplicationUser", null)
+                    b.HasOne("Domen.JWTModels.JwtApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -411,7 +411,7 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domen.JWTModels._jwt_ApplicationUser", null)
+                    b.HasOne("Domen.JWTModels.JwtApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -420,19 +420,19 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Domen.JWTModels._jwt_ApplicationUser", null)
+                    b.HasOne("Domen.JWTModels.JwtApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Domen.Models.CommandModels._customer_Model_write", b =>
+            modelBuilder.Entity("Domen.Models.CommandModels.CustomerWriteModel", b =>
                 {
                     b.Navigation("OrdersOfCustomer");
                 });
 
-            modelBuilder.Entity("Domen.Models.CommandModels._product_Model_write", b =>
+            modelBuilder.Entity("Domen.Models.CommandModels.ProductWriteModel", b =>
                 {
                     b.Navigation("OrdersOfproduct");
                 });

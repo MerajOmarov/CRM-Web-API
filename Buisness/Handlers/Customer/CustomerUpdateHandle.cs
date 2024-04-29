@@ -1,6 +1,6 @@
 ﻿
 using Abstraction;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_customer;
+using Abstraction.Abstractions.Write.Customer;
 using AutoMapper;
 using Buisness.DTOs.Command.Customer;
 using Domen.DTOs.CommandDTOs.CustomerDTOs;
@@ -46,19 +46,19 @@ namespace Buisness.Handlers.Customer
             }
 
             // Updating to database
-            await _repositoryUpdate.UpdateCustomer(request.oldPIN, request.newPIN);
+            await _repositoryUpdate.UpdateCustomerAsync(request.oldPIN, request.newPIN, cancellationToken);
 
             //Saving changes
-            await _unitOfWork.Save(cancellationToken);
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             //Result
-            var customerFromdb = await _repositotyResponse.ResponseCustomer(request.newPIN);
+            var customerFromdb = await _repositotyResponse.ResponseCustomerAsync(request.newPIN, cancellationToken);
 
             // Mapping Entity to DTO
-            var respons = _mapper.Map<CustomerResponseUpdateDTO>(customerFromdb);
+            var response = _mapper.Map<CustomerResponseUpdateDTO>(customerFromdb);
 
-            //Respons
-            return respons;
+            //Response
+            return response;
         }
     }
 }

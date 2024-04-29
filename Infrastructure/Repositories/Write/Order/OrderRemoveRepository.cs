@@ -1,11 +1,6 @@
-﻿using Abstraction.Abstractions._write_Abstractions._write_Abstractions_order;
+﻿using Abstraction.Abstractions.Write.Order;
 using Domen.Models.CommandModels;
 using Infrastructure.DataContexts.CommandDbContext;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories.CommandRepositories.OrderRepository
 {
@@ -20,9 +15,9 @@ namespace Infrastructure.Repositories.CommandRepositories.OrderRepository
             _response = response;
         }
 
-        public async Task<OrderWriteModel> RemoveOrder(Guid orderCode)
+        public async Task<OrderWriteModel> RemoveOrderAsync(Guid orderCode, CancellationToken cancellationToken)
         {
-            OrderWriteModel order = await _response.ResponseOrder(orderCode);
+            OrderWriteModel order = await _response.ResponseOrderAsync(orderCode,cancellationToken);
 
             _dbContext.Orders.Remove(order);
 

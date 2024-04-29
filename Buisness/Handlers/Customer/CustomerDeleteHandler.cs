@@ -1,6 +1,6 @@
 ﻿
 using Abstraction;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_customer;
+using Abstraction.Abstractions.Write.Customer;
 using AutoMapper;
 using Domen.DTOs.CommandDTOs.CustomerDTOs;
 using Domen.Models.CommandModels;
@@ -34,6 +34,7 @@ namespace Buisness.Handlers.Customer
         {
             //Validation
             var result = await _validator.ValidateAsync(request);
+
             if (!result.IsValid)
             {
                 foreach (var error in result.Errors)
@@ -43,16 +44,16 @@ namespace Buisness.Handlers.Customer
             }
 
             //Deleting from database
-            CustomerWriteModel customerFromdb = await _repositoryRemove.RemoveCustomer(request.PIN);
+            CustomerWriteModel customerFromdb = await _repositoryRemove.RemoveCustomerAsync(request.PIN,cancellationToken);
 
             //Mapping Entity to DTO
-            var respons = _mapper.Map<CustomerResponseDeleteDTO>(customerFromdb);
+            var response = _mapper.Map<CustomerResponseDeleteDTO>(customerFromdb);
 
             //Saving changes
-            await _unitOfWork.Save(cancellationToken);
+            await _unitOfWork.SaveAsync(cancellationToken);
 
-            //Respons
-            return respons;
+            //Response
+            return response;
         }
     }
 }

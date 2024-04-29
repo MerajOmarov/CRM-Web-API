@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations._company_DbContext_readMigrations
 {
     [DbContext(typeof(CompanyReadDbContext))]
-    [Migration("20240117055535_The lastest Migration")]
-    partial class ThelastestMigration
+    [Migration("20240428174047_WebApiMigrationCompanyReadDbContext")]
+    partial class WebApiMigrationCompanyReadDbContext
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Infrastructure.Migrations._company_DbContext_readMigrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domen.JWTModels._jwt_ApplicationUser", b =>
+            modelBuilder.Entity("Domen.JWTModels.JwtApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -50,6 +50,10 @@ namespace Infrastructure.Migrations._company_DbContext_readMigrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -70,20 +74,16 @@ namespace Infrastructure.Migrations._company_DbContext_readMigrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Sername")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sername")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -98,7 +98,7 @@ namespace Infrastructure.Migrations._company_DbContext_readMigrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Domen.Models.QueryModel._cop_Model_read", b =>
+            modelBuilder.Entity("Domen.Models.QueryModel.COPReadModel", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -144,7 +144,7 @@ namespace Infrastructure.Migrations._company_DbContext_readMigrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OperatingSystem")
+                    b.Property<string>("ProductOperatingSystem")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -165,7 +165,7 @@ namespace Infrastructure.Migrations._company_DbContext_readMigrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("All_cops_Model_read");
+                    b.ToTable("ClientOrderProducts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -312,7 +312,7 @@ namespace Infrastructure.Migrations._company_DbContext_readMigrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Domen.JWTModels._jwt_ApplicationUser", null)
+                    b.HasOne("Domen.JWTModels.JwtApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -321,7 +321,7 @@ namespace Infrastructure.Migrations._company_DbContext_readMigrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Domen.JWTModels._jwt_ApplicationUser", null)
+                    b.HasOne("Domen.JWTModels.JwtApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -336,7 +336,7 @@ namespace Infrastructure.Migrations._company_DbContext_readMigrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domen.JWTModels._jwt_ApplicationUser", null)
+                    b.HasOne("Domen.JWTModels.JwtApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -345,7 +345,7 @@ namespace Infrastructure.Migrations._company_DbContext_readMigrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Domen.JWTModels._jwt_ApplicationUser", null)
+                    b.HasOne("Domen.JWTModels.JwtApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

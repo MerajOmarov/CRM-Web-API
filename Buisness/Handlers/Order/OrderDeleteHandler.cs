@@ -1,6 +1,6 @@
 ﻿
 using Abstraction;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_order;
+using Abstraction.Abstractions.Write.Order;
 using AutoMapper;
 using Domen.DTOs.CommandDTOs.OrderDTOs;
 using Domen.Models.CommandModels;
@@ -44,15 +44,15 @@ namespace Buisness.Handlers.Order
             }
 
             //Deleting from database
-            OrderWriteModel orderFromdb = await _repositoryRemove.RemoveOrder(request.Code);
+            OrderWriteModel orderFromdb = await _repositoryRemove.RemoveOrderAsync(request.Code, cancellationToken);
 
             //Mapping Entity to DTO
             var response = _mapper.Map<OrderResponseDeleteDTO>(orderFromdb);
 
             //Saving changes
-            await _unitOfWork.Save(cancellationToken);
+            await _unitOfWork.SaveAsync(cancellationToken);
 
-            //Respons
+            //Response
             return response;
         }
     }

@@ -1,12 +1,7 @@
-﻿using Abstraction.Abstractions._write_Abstractions._write_Abstractions_customer;
+﻿using Abstraction.Abstractions.Write.Customer;
 using Domen.Models.CommandModels;
 using Infrastructure.DataContexts.CommandDbContext;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories.CommandRepositories.CustomerRepository
 {
@@ -19,12 +14,12 @@ namespace Infrastructure.Repositories.CommandRepositories.CustomerRepository
             _dbContext = dbContext;
         }
 
-        public async Task<CustomerWriteModel> ResponseCustomer(Guid customerPIN)
+        public async Task<CustomerWriteModel> ResponseCustomerAsync(Guid customerPIN,
+                                                                    CancellationToken cancellationToken)
         {
             var customer = await _dbContext.Customers.SingleOrDefaultAsync(x => x.PIN == customerPIN);
+
             return customer;
         }
-
-      
     }
 }

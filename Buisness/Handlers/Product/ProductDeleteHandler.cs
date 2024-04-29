@@ -1,6 +1,6 @@
 ﻿
 using Abstraction;
-using Abstraction.Abstractions._write_Abstractions._write_Abstractions_product;
+using Abstraction.Abstractions.Write.Product;
 using AutoMapper;
 using Domen.DTOs.CommandDTOs.ProductDTOs;
 using Domen.Models.CommandModels;
@@ -43,13 +43,13 @@ namespace Buisness.Handlers.ProductHandler
             }
 
             //Deleting from database
-            ProductWriteModel productFromdb = await _repository.RemoveProduct(request.Barcode);
+            ProductWriteModel productFromdb = await _repository.RemoveProductAsync(request.Barcode,cancellationToken);
 
             //Mapping Entity to DTO
             var response = _mapper.Map<ProductResponseDeleteDTO>(productFromdb);
 
             //Saving changes
-            await _unitOfWork.Save(cancellationToken);
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             //Respons
             return response;

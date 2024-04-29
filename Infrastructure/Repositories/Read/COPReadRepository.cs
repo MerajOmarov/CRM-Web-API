@@ -1,4 +1,4 @@
-﻿using Abstraction.Abstractions._read_Abstractions;
+﻿using Abstraction.Abstractions.Read;
 using AutoMapper;
 using Buisness.DTOs.Query;
 using Domen.Models.QueryModel;
@@ -18,50 +18,54 @@ namespace Infrastructure.Repositories.QueryRepositories
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<copReadDTO>> GetCOPsAsync(Guid CustomerPIN, CancellationToken cancellationToken)
+        public async Task<IEnumerable<COPReadDTO>> GetCOPsAsync(Guid CustomerPIN,
+                                                                CancellationToken cancellationToken)
         {
-            List<COPReadModel> cops = await _companyDbContextread.ClientOrderProducts.Where(x => x.CustomerPIN == CustomerPIN).ToListAsync();
-            List<copReadDTO> Responses = new();
-            copReadDTO Response;
+            List<COPReadModel> cops = await _companyDbContextread.ClientOrderProducts
+                .Where(x => x.CustomerPIN == CustomerPIN)
+                .ToListAsync();
+
+            List<COPReadDTO> responses = new();
+
+            COPReadDTO response;
+
             int CountOfEltities = cops.Count;
+
             for (int i = 0; i < CountOfEltities; i++)
             {
-                Response = _mapper.Map<copReadDTO>(cops[i]);
-                Responses.Add(Response);
+                response = _mapper.Map<COPReadDTO>(cops[i]);
+
+                responses.Add(response);
             }
 
-            return Responses;
+            return responses;
         }
 
-        public async Task<copReadDTO> GetCOPAsync(Guid OrderCode, CancellationToken cancellationToken)
+        public async Task<COPReadDTO> GetCOPAsync(Guid OrderCode, CancellationToken cancellationToken)
         {
             //Validation
             CheckGuid(OrderCode);
 
             //Entity from database 
-            COPReadModel? customerOrderProductFromdb = await _companyDbContextread.ClientOrderProducts.SingleOrDefaultAsync(x => x.OrderCode == OrderCode);
+            COPReadModel? customerOrderProductFromdb = await _companyDbContextread.ClientOrderProducts
+                .SingleOrDefaultAsync(x => x.OrderCode == OrderCode);
+
             if (customerOrderProductFromdb == null)
-            {
                 throw new Exception("CustomerOrderProduct Error: The CustomerOrderProduct dose not exist");
-            }
 
             // Mapping Entity to DTO
-            var respons = _mapper.Map<copReadDTO>(customerOrderProductFromdb);
+            var response = _mapper.Map<COPReadDTO>(customerOrderProductFromdb);
 
-            return respons;
-
+            return response;
         }
 
         private void CheckGuid(Guid guid)
         {
             if(guid==null)
-            {
                 throw new Exception("Validation Error: The order_Code field can not be null");
-            }
-            if(!(guid.GetType() == typeof(Guid)))
-            {
+
+            if (!(guid.GetType() == typeof(Guid)))
                 throw new Exception("Validation Error: The order_Code field must be guid");
-            }
         }
     }
 }
