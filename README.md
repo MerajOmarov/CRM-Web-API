@@ -24,11 +24,11 @@ The Project is developed in ASP.Net (.Net7) and MSSQL is used as a database.
 
 # Models
 
---_customer_Model_write (write model)
---_protuct_Model_write (write model)
---_order_Model_write (write model)
---_product_Model_read (read model)
---_cop_Model_read (customer-order-product read model)
+--CustomerWriteModel (write model)
+--ProtuctWriteModel (write model)
+--OrderWriteModel (write model)
+--ProductReadModel (read model)
+--COPReadModel (customer-order-product read model)
 
 
 # ORM
@@ -45,18 +45,18 @@ The Project is developed in ASP.Net (.Net7) and MSSQL is used as a database.
 # Desing Patterns
 
 --Repository
-  _customer_Repository
-  _product_Repository
-  _order_Respository
-  _cop_Repository
+  CustomerRepository
+  ProductRepository
+  OrderRespository
+  COPRepository
 
 --Mediator
-  _customer_Handler
-  _product_Handler
-  _order_Handler
-  _customer_PostDTO_request
-  _product_PostDTO_request
-  _order_PostDTO_request
+  CustomerHandler
+  ProductHandler
+  OrderHandler
+  CustomerRequestPostDTO
+  ProductRequestPostDTO
+  OrderRequestPostDTO
 
 --CQRS
   All classes are seperated into write and read models.
