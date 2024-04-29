@@ -19,7 +19,7 @@ namespace CRM_API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // Add services to the container..
             builder.Services.AddDbContext<WriteDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("_command_Connection")));
 
             builder.Services.AddDbContext<ClientReadDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("_query_client_Connection")));
