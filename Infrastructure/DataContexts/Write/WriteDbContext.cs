@@ -40,6 +40,7 @@ namespace Infrastructure.DataContexts.CommandDbContext
                    .WithOne(s => s.Product)
                    .HasForeignKey(s => s.productID)
                    .OnDelete(DeleteBehavior.Cascade);
+            ///b cb b
          
             builder.Entity<OrderWriteModel>()
                    .ToTable(tb => tb.HasTrigger("_order_InsertTrigger"))
