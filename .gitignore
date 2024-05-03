@@ -397,3 +397,17 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 /.vs
+/Abstraction/obj
+/Abstraction/bin
+/CRM_API/obj
+/CRM_API/bin
+/CRM_API/obj
+/CRM_API/bin
+/Infrastructure/obj
+/Infrastructure/bin
+/Domen/bin
+/Domen/obj
+/Buisness/bin
+/Buisness/obj
+/CRM_API/bin
+/CRM_API/obj
