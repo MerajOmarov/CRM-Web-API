@@ -148,14 +148,14 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("ProductBarcode")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("productID")
+                    b.Property<int>("ProductID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("CustomerID");
 
-                    b.HasIndex("productID");
+                    b.HasIndex("ProductID");
 
                     b.ToTable("Orders", t =>
                         {
@@ -367,7 +367,7 @@ namespace Infrastructure.Migrations
 
                     b.HasOne("Domen.Models.CommandModels.ProductWriteModel", "Product")
                         .WithMany("OrdersOfproduct")
-                        .HasForeignKey("productID")
+                        .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

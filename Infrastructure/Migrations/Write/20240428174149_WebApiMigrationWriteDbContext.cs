@@ -97,7 +97,7 @@ namespace Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_productID",
                 table: "Orders",
-                column: "productID");
+                column: "ProductID");
         }
 
         /// <inheritdoc />

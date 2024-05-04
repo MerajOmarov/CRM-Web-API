@@ -66,7 +66,7 @@ namespace Buisness.Handlers.Order
 
             orderTodb.CustomerID = customerToOrder.ID;
 
-            orderTodb.productID = productToOrder.ID;
+            orderTodb.ProductID = productToOrder.ID;
 
             // Adding to database
             await _repositoryPost.PostOrderAsync(orderTodb, cancellationToken);

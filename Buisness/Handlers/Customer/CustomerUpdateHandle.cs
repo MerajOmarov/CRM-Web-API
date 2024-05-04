@@ -45,11 +45,23 @@ namespace Buisness.Handlers.Customer
                 }
             }
 
-            // Updating to database
-            await _repositoryUpdate.UpdateCustomerAsync(request.oldPIN, request.newPIN, cancellationToken);
+            try
+            {
+                //Begin Transaction
+                await _unitOfWork.BeginTransactionAsync(System.Data.IsolationLevel.ReadCommitted,cancellationToken);
 
-            //Saving changes
-            await _unitOfWork.SaveAsync(cancellationToken);
+                // Updating to database
+                await _repositoryUpdate.UpdateCustomerAsync(request.oldPIN, request.newPIN, cancellationToken);
+
+                //Saving changes
+                await _unitOfWork.CommitTransactionAsync(cancellationToken);
+            }
+            catch (Exception)
+            {
+                await _unitOfWork.RollbackTransactionAsycn(cancellationToken);
+
+                throw new Exception("Failed Process");
+            }
 
             //Result
             var customerFromdb = await _repositotyResponse.ResponseCustomerAsync(request.newPIN, cancellationToken);

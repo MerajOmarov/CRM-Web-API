@@ -48,11 +48,23 @@ namespace Buisness.Handlers.Customer
             //Mapping DTO to Entity
             var customerTodb = _mapper.Map<CustomerWriteModel>(request);
 
-            // Adding to database
-            await _repositoryPost.PostCustomerAsync(customerTodb, cancellationToken);
+            try
+            {
+                //BeginTransaction
+                await _unitOfWork.BeginTransactionAsync(System.Data.IsolationLevel.ReadCommitted, cancellationToken);
 
-            //Saving changes
-            await _unitOfWork.SaveAsync(cancellationToken);
+                // Adding to database
+                await _repositoryPost.PostCustomerAsync(customerTodb, cancellationToken);
+
+                //Saving changes
+                await _unitOfWork.CommitTransactionAsync(cancellationToken);
+            }
+            catch (Exception)
+            {
+                await _unitOfWork.RollbackTransactionAsycn(cancellationToken);
+
+                throw new Exception("Failed Process");
+            }
 
             //Result
             var customerFromdb = await _repositoryResponse.ResponseCustomerAsync(customerTodb.PIN,cancellationToken);

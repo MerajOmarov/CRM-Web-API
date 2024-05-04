@@ -20,7 +20,7 @@ namespace Domen.Models.CommandModels
         // Navigation parametrs
         public int CustomerID { get; set; }
         public CustomerWriteModel Customer { get; set; }
-        public int productID { get; set; }
+        public int ProductID { get; set; }
         public ProductWriteModel Product { get; set; }
     }
 }

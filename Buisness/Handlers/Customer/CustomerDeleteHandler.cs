@@ -6,6 +6,7 @@ using Domen.DTOs.CommandDTOs.CustomerDTOs;
 using Domen.Models.CommandModels;
 using FluentValidation;
 using MediatR;
+using System.Runtime.CompilerServices;
 
 namespace Buisness.Handlers.Customer
 {
@@ -43,14 +44,28 @@ namespace Buisness.Handlers.Customer
                 }
             }
 
-            //Deleting from database
-            CustomerWriteModel customerFromdb = await _repositoryRemove.RemoveCustomerAsync(request.PIN,cancellationToken);
+            CustomerWriteModel customerFromdb=new();
+
+            try
+            {
+                //Begin transaction
+                await _unitOfWork.BeginTransactionAsync(System.Data.IsolationLevel.ReadCommitted, cancellationToken);
+
+                //Deleting from database
+                customerFromdb = await _repositoryRemove.RemoveCustomerAsync(request.PIN, cancellationToken);
+
+                //Saving changes
+                await _unitOfWork.CommitTransactionAsync(cancellationToken);
+            }
+            catch (Exception)
+            {
+                await _unitOfWork.RollbackTransactionAsycn(cancellationToken);
+
+                throw new Exception("Failed Process");
+            }
 
             //Mapping Entity to DTO
             var response = _mapper.Map<CustomerResponseDeleteDTO>(customerFromdb);
-
-            //Saving changes
-            await _unitOfWork.SaveAsync(cancellationToken);
 
             //Response
             return response;

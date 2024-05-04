@@ -27,18 +27,18 @@ namespace Infrastructure.DataContexts.CommandDbContext
                    .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<ProductWriteModel>()
-                   .ToTable(tb => tb.HasTrigger("_product_InsertTrigger"))
-                   .ToTable(tb => tb.HasTrigger("_product_Update_Trigger"))
-                   .ToTable(tb => tb.HasTrigger("_product_Remove_Trigger"))
+                   .ToTable(tb => tb.HasTrigger("ProductInsertTrigger"))
+                   .ToTable(tb => tb.HasTrigger("ProductUpdateTrigger"))
+                   .ToTable(tb => tb.HasTrigger("ProductRemoveTrigger"))
                    .HasMany(t => t.OrdersOfproduct)
                    .WithOne(s => s.Product)
-                   .HasForeignKey(s => s.productID)
+                   .HasForeignKey(s => s.ProductID)
                    .OnDelete(DeleteBehavior.Cascade);
          
             builder.Entity<OrderWriteModel>()
-                   .ToTable(tb => tb.HasTrigger("_order_InsertTrigger"))
-                   .ToTable(tb => tb.HasTrigger("_order_UpdateTrigger"))
-                   .ToTable(tb => tb.HasTrigger("_order_RemoveTrigger"));
+                   .ToTable(tb => tb.HasTrigger("OrderInsertTrigger"))
+                   .ToTable(tb => tb.HasTrigger("OrderUpdateTrigger"))
+                   .ToTable(tb => tb.HasTrigger("OrderRemoveTrigger"));
 
         }
     }
