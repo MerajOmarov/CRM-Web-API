@@ -1,1 +1,47 @@
+USE [_command_DB]
+GO
+
+/****** Object:  Trigger [dbo].[ProductInsertTrigger]    Script Date: 4-5-2024 19:03 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TRIGGER [dbo].[ProductInsertTrigger]
+ON [dbo].[Products]
+AFTER INSERT
+AS
+BEGIN
+     INSERT INTO _query_client_DB.dbo.Products
+	 (
+		 [Name],
+		 [Description],
+		 [Price],
+		 [Barcode],
+		 [Company],
+		 [OperatingSystem],
+		 [Prosessor],
+		 [Screen],
+		 [Videocard]
+	 )
+	 VALUES
+	 (
+		 (SELECT [Name] FROM inserted),
+		 (SELECT [Description] FROM inserted),
+		 (SELECT [Price] FROM inserted),
+		 (SELECT [Barcode] FROM inserted),
+		 (SELECT [Company] FROM inserted),
+		 (SELECT [OperatingSystem] FROM inserted),
+		 (SELECT [Prosessor] FROM inserted),
+		 (SELECT [Screen] FROM inserted),
+		 (SELECT [Videocard] FROM inserted)
+	 )
+END;
+GO
+
+ALTER TABLE [dbo].[Products] ENABLE TRIGGER [ProductInsertTrigger]
+GO
+
+
 
