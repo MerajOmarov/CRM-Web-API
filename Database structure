@@ -43,5 +43,156 @@ GO
 ALTER TABLE [dbo].[Products] ENABLE TRIGGER [ProductInsertTrigger]
 GO
 
+=================================================================================================================
+
+USE [_command_DB]
+GO
+
+/****** Object:  Trigger [dbo].[ProductRemoveTrigger]    Script Date: 4-5-2024 19:19 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TRIGGER [dbo].[ProductRemoveTrigger]
+ON [dbo].[Products]
+AFTER DELETE
+AS
+BEGIN
+     DELETE FROM _query_client_DB.dbo.Products
+	 WHERE Barcode=(SELECT Barcode FROM deleted)
+END
+GO
+
+ALTER TABLE [dbo].[Products] ENABLE TRIGGER [ProductRemoveTrigger]
+GO
+
+
+
+=================================================================================================
+
+USE [_command_DB]
+GO
+
+/****** Object:  Trigger [dbo].[ProductUpdateTrigger]    Script Date: 4-5-2024 19:20 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TRIGGER [dbo].[ProductUpdateTrigger]
+ON [dbo].[Products]
+AFTER UPDATE
+AS
+BEGIN
+    UPDATE _query_client_DB.dbo.Products
+	SET 
+       Barcode = (SELECT Barcode FROM inserted),
+       Price =   (SELECT Price FROM inserted)
+	WHERE
+		Barcode = (SELECT Barcode FROM deleted)
+		OR
+		Price =   (SELECT Price FROM deleted);
+END;
+GO
+
+ALTER TABLE [dbo].[Products] ENABLE TRIGGER [ProductUpdateTrigger]
+GO
+
+
+==============================================================================================================
+
+USE [_command_DB]
+GO
+
+/****** Object:  Trigger [dbo].[OrderInsertTrigger]    Script Date: 4-5-2024 19:21 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TRIGGER [dbo].[OrderInsertTrigger]
+ON [dbo].[Orders]
+AFTER INSERT
+AS
+BEGIN
+     INSERT INTO _query_company_DB.dbo.ClientOrderProducts
+	 (
+	   OrderCode,
+	   OrderCreatedTime,
+	   OrderDeedline,
+	   CustomerPIN,
+	   CustomerName,
+	   CustomerSername,
+	   ProductBarcode,
+	   ProductName,
+	   ProductDescription,
+	   ProductVideocard,
+	   ProductOperatingSystem,
+	   ProductScreen,
+	   ProductProsessor,
+	   ProductCompany,
+	   ProductCreatedTime,
+	   ProductPrice
+	 )
+	 VALUES
+	 (
+		 (SELECT Code  FROM inserted),
+		 (SELECT CreatedTime  FROM inserted),
+		 (SELECT Deedline  FROM inserted),
+		 (SELECT CustomerPIN  FROM inserted),
+		 (SELECT [Name]  FROM _command_DB.dbo.Customers WHERE Customers.ID=(SELECT CustomerID  FROM inserted)),
+		 (SELECT [Surname]  FROM _command_DB.dbo.Customers WHERE Customers.ID=(SELECT CustomerID  FROM inserted)),
+		 (SELECT ProductBarcode FROM inserted),
+		 (SELECT [Barcode]  FROM _command_DB.dbo.Products WHERE Products.ID= (SELECT ProductID  FROM inserted)),
+		 (SELECT [Name]  FROM _command_DB.dbo.Products WHERE Products.ID= (SELECT ProductID  FROM inserted)),
+		 (SELECT [Videocard]  FROM _command_DB.dbo.Products WHERE Products.ID= (SELECT ProductID  FROM inserted)),
+		 (SELECT [OperatingSystem]  FROM _command_DB.dbo.Products WHERE Products.ID= (SELECT ProductID  FROM inserted)),
+		 (SELECT [Screen]  FROM _command_DB.dbo.Products WHERE Products.ID= (SELECT ProductID  FROM inserted)),
+		 (SELECT [Prosessor]  FROM _command_DB.dbo.Products WHERE Products.ID= (SELECT ProductID  FROM inserted)),
+		 (SELECT [Company]  FROM _command_DB.dbo.Products WHERE Products.ID= (SELECT ProductID  FROM inserted)),
+		 (SELECT [CreatedTime]  FROM _command_DB.dbo.Products WHERE Products.ID= (SELECT ProductID  FROM inserted)),
+		 (SELECT [Price]  FROM _command_DB.dbo.Products WHERE Products.ID= (SELECT ProductID  FROM inserted))
+	 )		  
+END;
+
+GO
+
+ALTER TABLE [dbo].[Orders] ENABLE TRIGGER [OrderInsertTrigger]
+GO
+
+
+========================================================================================================================
+
+USE [_command_DB]
+GO
+
+/****** Object:  Trigger [dbo].[OrderUpdateTrigger]    Script Date: 4-5-2024 19:21 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TRIGGER [dbo].[OrderUpdateTrigger]
+ON [dbo].[Orders]
+AFTER UPDATE
+AS
+BEGIN
+    UPDATE _query_company_DB.dbo.ClientOrderProducts
+	SET 
+       OrderCode=(SELECT Code FROM inserted)
+	   WHERE ID=(SELECT ID From inserted)
+END;
+GO
+
+ALTER TABLE [dbo].[Orders] ENABLE TRIGGER [OrderUpdateTrigger]
+GO
+
+
+
 
 
