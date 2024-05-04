@@ -19,22 +19,22 @@ namespace Buisness.Handlers.Order
         private readonly IOrderResponseRepository _repositoryOrderResponse;
         private readonly IProductResponseRepository _repositoryProductResponse;
         private readonly ICustomerResponseRepository _repositoryCustomerResponse;
-        private readonly IUnitOfWork _unitOfWork_Repository;
+        private readonly IUnitOfWork _unitOfWork;
 
         public OrderUpdateHandler(IMapper mapper, IValidator<OrderRequestUpdateDTO> validator,
                                   IOrderUpdateRepository repositoryUpdate,
                                   IOrderResponseRepository repositoryOrderResponse,
                                   IProductResponseRepository repositoryProductResponse,
-                                  ICustomerResponseRepository customer_Repository_respons,
-                                  IUnitOfWork unitOfWork_Repository)
+                                  ICustomerResponseRepository repositoryCustomerResponse,
+                                  IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
             _validator = validator;
             _repositoryUpdate = repositoryUpdate;
             _repositoryOrderResponse = repositoryOrderResponse;
             _repositoryProductResponse = repositoryProductResponse;
-            _repositoryCustomerResponse = customer_Repository_respons;
-            _unitOfWork_Repository = unitOfWork_Repository;
+            _repositoryCustomerResponse = repositoryCustomerResponse;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<OrderResponseUpdateDTO> Handle(
@@ -51,6 +51,8 @@ namespace Buisness.Handlers.Order
                 }
             }
 
+            //Begin Transaction
+           
             // Updating to database
             await _repositoryUpdate.UpdateOrderAsync(request.oldCode,
                                                      request.newCode,
@@ -58,7 +60,7 @@ namespace Buisness.Handlers.Order
                                                      cancellationToken);
 
             //Saving changes
-            await _unitOfWork_Repository.SaveAsync(cancellationToken);
+            await _unitOfWork.SaveAsync(cancellationToken);
 
             //Result
             var orderFromdb = await _repositoryOrderResponse.ResponseOrderAsync(request.newCode,

@@ -42,9 +42,26 @@ namespace Buisness.Handlers.ProductHandler
                 }
             }
 
-            //Deleting from database
-            ProductWriteModel productFromdb = await _repository.RemoveProductAsync(request.Barcode,cancellationToken);
+            ProductWriteModel productFromdb = new();
 
+            try
+            {
+                //Begin Transaction
+                await _unitOfWork.BeginTransactionAsync(System.Data.IsolationLevel.ReadCommitted, cancellationToken);
+
+                //Deleting from database
+                productFromdb = await _repository.RemoveProductAsync(request.Barcode, cancellationToken);
+
+                //Save changes
+                await _unitOfWork.CommitTransactionAsync(cancellationToken);
+            }
+            catch (Exception)
+            {
+                await _unitOfWork.RollbackTransactionAsycn(cancellationToken);
+
+                throw new Exception("Failed Process");
+            }
+           
             //Mapping Entity to DTO
             var response = _mapper.Map<ProductResponseDeleteDTO>(productFromdb);
 

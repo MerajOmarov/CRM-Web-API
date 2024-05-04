@@ -43,14 +43,28 @@ namespace Buisness.Handlers.Order
                 }
             }
 
-            //Deleting from database
-            OrderWriteModel orderFromdb = await _repositoryRemove.RemoveOrderAsync(request.Code, cancellationToken);
+            OrderResponseDeleteDTO response=new();
 
-            //Mapping Entity to DTO
-            var response = _mapper.Map<OrderResponseDeleteDTO>(orderFromdb);
+            try
+            {
+                //Begin Transaction
+                await _unitOfWork.BeginTransactionAsync(System.Data.IsolationLevel.ReadCommitted, cancellationToken);
 
-            //Saving changes
-            await _unitOfWork.SaveAsync(cancellationToken);
+                //Deleting from database
+                var orderFromdb = await _repositoryRemove.RemoveOrderAsync(request.Code, cancellationToken);
+
+                //Mapping Entity to DTO
+                response = _mapper.Map<OrderResponseDeleteDTO>(orderFromdb);
+
+                //Saving changes
+                await _unitOfWork.CommitTransactionAsync(cancellationToken);
+            }
+            catch (Exception)
+            {
+                await _unitOfWork.CommitTransactionAsync(cancellationToken);
+
+                throw new Exception("Failed Process"); throw new Exception("Failed Process");
+            }
 
             //Response
             return response;

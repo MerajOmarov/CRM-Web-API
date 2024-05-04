@@ -42,15 +42,26 @@ namespace Buisness.Handlers.ProductHandler
                     throw new Exception($"Validation Error: {error.ErrorMessage} for the property: {error.PropertyName}");
                 }
             }
+        
+            try
+            {
+                //Begin Transaction
+                await _unitOfWork.BeginTransactionAsync(System.Data.IsolationLevel.ReadCommitted, cancellationToken);
 
-            // Updating to database
-            await _repositoryUpdate.UpdateProductAsync(request.OldBarcode,
-                                                       request.NewBarcode,
-                                                       request.NewPrice,
-                                                       cancellationToken);
+                // Updating to database
+                await _repositoryUpdate.UpdateProductAsync(request.OldBarcode,
+                                                           request.NewBarcode,
+                                                           request.NewPrice,
+                                                           cancellationToken);
+                //Saving changes
+                await _unitOfWork.CommitTransactionAsync(cancellationToken);
+            }
+            catch (Exception)
+            {
+                await _unitOfWork.RollbackTransactionAsycn(cancellationToken);
 
-            //Saving changes
-            await _unitOfWork.SaveAsync(cancellationToken);
+                throw new Exception("Failed Process");
+            }
 
             //Result
             var productFromdb = await _repositoryResponse.ResponseProductAsync(request.NewBarcode, cancellationToken);

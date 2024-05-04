@@ -49,11 +49,23 @@ namespace Buisness.Handlers.ProductHandler
             //Mapping DTO to Entity
             var productTodb = _mapper.Map<ProductWriteModel>(request);
 
-            // Adding to database
-            await _repositoryPost.PostProductAsync(productTodb, cancellationToken);
+            try
+            {
+                //Begin Transaction
+                await _unitOfWork.BeginTransactionAsync(System.Data.IsolationLevel.ReadCommitted, cancellationToken);
 
-            //Saving changes
-            await _unitOfWork.SaveAsync(cancellationToken);
+                // Adding to database
+                await _repositoryPost.PostProductAsync(productTodb, cancellationToken);
+
+                //Saving changes
+                await _unitOfWork.CommitTransactionAsync(cancellationToken);
+            }
+            catch (Exception)
+            {
+                await _unitOfWork.RollbackTransactionAsycn(cancellationToken);
+
+                throw new Exception("Failed Process"); throw new Exception("Failed Process");
+            }
 
             //Result
             var productFromdb = await _repositoryResponse.ResponseProductAsync(productTodb.Barcode,cancellationToken);

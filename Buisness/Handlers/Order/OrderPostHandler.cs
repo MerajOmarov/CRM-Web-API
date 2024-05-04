@@ -29,7 +29,7 @@ namespace Buisness.Handlers.Order
             ICustomerResponseRepository customer_Repository_respons,
             IProductResponseRepository product_Repository_respons,
             IOrderResponseRepository order_Repository_respons,
-            IUnitOfWork unitOfWork_Respository)
+            IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
             _validator = validator;
@@ -37,7 +37,7 @@ namespace Buisness.Handlers.Order
             _repositoryCustomerResponse = customer_Repository_respons;
             _repositoryProductResponse = product_Repository_respons;
             _repositoryOrderResponse = order_Repository_respons;
-            _unitOfWork = unitOfWork_Respository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<OrderResponsePostDTO> Handle(
@@ -68,11 +68,23 @@ namespace Buisness.Handlers.Order
 
             orderTodb.ProductID = productToOrder.ID;
 
-            // Adding to database
-            await _repositoryPost.PostOrderAsync(orderTodb, cancellationToken);
+            try
+            {
+                //Begin Transaction
+                await _unitOfWork.BeginTransactionAsync(System.Data.IsolationLevel.ReadCommitted, cancellationToken);
 
-            //Saving changes
-            await _unitOfWork.SaveAsync(cancellationToken);
+                // Adding to database
+                await _repositoryPost.PostOrderAsync(orderTodb, cancellationToken);
+
+                //Saving changes
+                await _unitOfWork.CommitTransactionAsync(cancellationToken);
+            }
+            catch (Exception)
+            {
+                await _unitOfWork.RollbackTransactionAsycn(cancellationToken);
+
+                throw new Exception("Failed Process");
+            }
 
             //Result
             var orderFromdb = await _repositoryOrderResponse.ResponseOrderAsync(orderTodb.Code, cancellationToken);

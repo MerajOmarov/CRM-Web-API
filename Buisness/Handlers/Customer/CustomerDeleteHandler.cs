@@ -6,7 +6,6 @@ using Domen.DTOs.CommandDTOs.CustomerDTOs;
 using Domen.Models.CommandModels;
 using FluentValidation;
 using MediatR;
-using System.Runtime.CompilerServices;
 
 namespace Buisness.Handlers.Customer
 {
@@ -21,12 +20,12 @@ namespace Buisness.Handlers.Customer
             IMapper mapper,
             IValidator<CustomerRequestDeleteDTO> validator,
             ICustomerRemoveRepository repositoryRemove,
-            IUnitOfWork unitOfWork_Repository)
+            IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
             _validator = validator;
             _repositoryRemove = repositoryRemove;
-            _unitOfWork = unitOfWork_Repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<CustomerResponseDeleteDTO> Handle(
