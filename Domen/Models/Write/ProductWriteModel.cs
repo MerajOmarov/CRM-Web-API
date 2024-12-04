@@ -9,8 +9,7 @@ namespace Domen.Models.CommandModels
 {
     public class ProductWriteModel
     {
-        [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Videocard { get; set; }
@@ -21,8 +20,6 @@ namespace Domen.Models.CommandModels
         public string Company { get; set; }
         public Guid Barcode { get; set; }
         public DateTime CreatedTime { get; set; }
-        
-        //Navigation parametr
         public IEnumerable<OrderWriteModel> OrdersOfproduct { get; set; }
     }
 }

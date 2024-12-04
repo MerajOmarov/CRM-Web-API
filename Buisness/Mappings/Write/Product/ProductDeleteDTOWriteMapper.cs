@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domen.DTOs.CommandDTOs.ProductDTOs;
+using Domen.DTOs.Write.Product;
 using Domen.Models.CommandModels;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,9 @@ namespace Buisness.Mappings.CommandMapping.ProductMapping
     {
         public ProductDeleteDTOWriteMapper()
         {
-            CreateMap<ProductRequestDeleteDTO, ProductWriteModel>();
+            CreateMap<DeleteProductRequest, ProductWriteModel>();
 
-            CreateMap<ProductWriteModel, ProductResponseDeleteDTO>();
+            CreateMap<ProductWriteModel, DeleteProductResponse>();
         }
     }
 }

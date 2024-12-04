@@ -97,11 +97,11 @@ namespace Infrastructure.Migrations._company_DbContext_readMigrations
 
             modelBuilder.Entity("Domen.Models.QueryModel.COPReadModel", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CustomerName")
                         .IsRequired()
@@ -160,7 +160,7 @@ namespace Infrastructure.Migrations._company_DbContext_readMigrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("ClientOrderProducts");
                 });

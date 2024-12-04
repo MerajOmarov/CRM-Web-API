@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Infrastructure
 {
-    public class JwtRepositoryauth : IJwtAuthRepository
+    public class JwtRepositoryauth : IJwtAuth
     {
         private readonly UserManager<JwtApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;

@@ -1,103 +1,32 @@
-﻿
-using Abstraction;
-using Abstraction.Abstractions.Write.Customer;
-using Abstraction.Abstractions.Write.Order;
-using Abstraction.Abstractions.Write.Product;
+﻿using Abstraction.Abstractions.Write.Order;
 using AutoMapper;
 using Buisness.DTOs.Command.Order;
 using Buisness.DTOs.CommandDTOs.Order;
 using Domen.Models.CommandModels;
-using FluentValidation;
 using MediatR;
 
 namespace Buisness.Handlers.Order
 {
-    public class OrderPostHandler : IRequestHandler<OrderRequestPostDTO, OrderResponsePostDTO>
+    public class OrderPostHandler : IRequestHandler<PostOrderRequest, PostOrderResponse>
     {
         private readonly IMapper _mapper;
-        private readonly IValidator<OrderRequestPostDTO> _validator;
-        private readonly IOrderPostRepository _repositoryPost;
-        private readonly ICustomerResponseRepository _repositoryCustomerResponse;
-        private readonly IProductResponseRepository _repositoryProductResponse;
-        private readonly IOrderResponseRepository _repositoryOrderResponse;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IPostOrder _repositoryPost;
 
-        public OrderPostHandler(
-            IMapper mapper,
-            IValidator<OrderRequestPostDTO> validator,
-            IOrderPostRepository order_Repository_post,
-            ICustomerResponseRepository customer_Repository_respons,
-            IProductResponseRepository product_Repository_respons,
-            IOrderResponseRepository order_Repository_respons,
-            IUnitOfWork unitOfWork)
+        public OrderPostHandler(IMapper mapper, IPostOrder repositoryPost)
         {
             _mapper = mapper;
-            _validator = validator;
-            _repositoryPost = order_Repository_post;
-            _repositoryCustomerResponse = customer_Repository_respons;
-            _repositoryProductResponse = product_Repository_respons;
-            _repositoryOrderResponse = order_Repository_respons;
-            _unitOfWork = unitOfWork;
+            _repositoryPost = repositoryPost;
         }
 
-        public async Task<OrderResponsePostDTO> Handle(
-            OrderRequestPostDTO request,
+        public async Task<PostOrderResponse> Handle(
+            PostOrderRequest request,
             CancellationToken cancellationToken)
         {
-            //Validation
-            var result = await _validator.ValidateAsync(request);
+            var order = _mapper.Map<OrderWriteModel>(request);
 
-            if (!result.IsValid)
-            {
-                foreach (var error in result.Errors)
-                {
-                    throw new Exception($"Validation Error: {error.ErrorMessage} for the property: {error.PropertyName}");
-                }
-            }
+            var response = await _repositoryPost.PostOrderAsync(order, cancellationToken);
 
-            //Mapping DTO to Entity
-            var orderTodb = _mapper.Map<OrderWriteModel>(request);
-
-            var customerToOrder = await _repositoryCustomerResponse.ResponseCustomerAsync(request.CustomerPIN,
-                                                                                          cancellationToken);
-
-            var productToOrder = await _repositoryProductResponse.ResponseProductAsync(request.ProductBarcode,
-                                                                                       cancellationToken);
-
-            orderTodb.CustomerID = customerToOrder.ID;
-
-            orderTodb.ProductID = productToOrder.ID;
-
-            try
-            {
-                //Begin Transaction
-                await _unitOfWork.BeginTransactionAsync(System.Data.IsolationLevel.ReadCommitted, cancellationToken);
-
-                // Adding to database
-                await _repositoryPost.PostOrderAsync(orderTodb, cancellationToken);
-
-                //Saving changes
-                await _unitOfWork.CommitTransactionAsync(cancellationToken);
-            }
-            catch (Exception)
-            {
-                await _unitOfWork.RollbackTransactionAsycn(cancellationToken);
-
-                throw new Exception("Failed Process");
-            }
-
-            //Result
-            var orderFromdb = await _repositoryOrderResponse.ResponseOrderAsync(orderTodb.Code, cancellationToken);
-
-            // Mapping Entity to DTO
-            var response = _mapper.Map<OrderResponsePostDTO>(orderFromdb);
-
-            response.CustomerName = customerToOrder.Name;
-
-            response.ProductName = productToOrder.Name;
-
-            //Response
-            return response;
+            return _mapper.Map <PostOrderResponse>(response);
         }
     }
 }

@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Buisness.FluentValidations.Order
 {
-    public class OrderPostDTOValidation : AbstractValidator<OrderRequestPostDTO>
+    public class OrderPostDTOValidation : AbstractValidator<PostOrderRequest>
     {
         public OrderPostDTOValidation()
         {

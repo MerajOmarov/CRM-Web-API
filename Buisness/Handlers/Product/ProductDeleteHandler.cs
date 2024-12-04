@@ -1,74 +1,25 @@
-﻿
-using Abstraction;
-using Abstraction.Abstractions.Write.Product;
-using AutoMapper;
-using Domen.DTOs.CommandDTOs.ProductDTOs;
-using Domen.Models.CommandModels;
-using FluentValidation;
+﻿using Abstraction.Abstractions.Write.Product;
+using Azure;
+using Domen.DTOs.Write.Product;
 using MediatR;
 
 namespace Buisness.Handlers.ProductHandler
 {
-    public class ProductDeleteHandler : IRequestHandler<ProductRequestDeleteDTO, ProductResponseDeleteDTO>
+    public class ProductDeleteHandler : IRequestHandler<DeleteProductRequest, DeleteProductResponse>
     {
-        private readonly IMapper _mapper;
-        private readonly IValidator<ProductRequestDeleteDTO> _validator;
-        private readonly IProductRemoveRepository _repository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IDeleteProduct _deleteProduct;
 
-        public ProductDeleteHandler(
-            IMapper mapper,
-            IValidator<ProductRequestDeleteDTO> validator,
-            IProductRemoveRepository repository,
-            IUnitOfWork unitOfWork)
+        public ProductDeleteHandler(IDeleteProduct deleteProduct)
         {
-            _mapper = mapper;
-            _validator = validator;
-            _repository = repository;
-            _unitOfWork = unitOfWork;
+            _deleteProduct = deleteProduct;
         }
 
-        public async Task<ProductResponseDeleteDTO> Handle(
-            ProductRequestDeleteDTO request,
+        public async Task<DeleteProductResponse> Handle(
+            DeleteProductRequest request,
             CancellationToken cancellationToken)
         {
-            //Validation
-            var result = await _validator.ValidateAsync(request);
-            if (!result.IsValid)
-            {
-                foreach (var error in result.Errors)
-                {
-                    throw new Exception($"Validation Error: {error.ErrorMessage} for the property: {error.PropertyName}");
-                }
-            }
+            var response = await _deleteProduct.DeleteProductAsync(request, cancellationToken);
 
-            ProductWriteModel productFromdb = new();
-
-            try
-            {
-                //Begin Transaction
-                await _unitOfWork.BeginTransactionAsync(System.Data.IsolationLevel.ReadCommitted, cancellationToken);
-
-                //Deleting from database
-                productFromdb = await _repository.RemoveProductAsync(request.Barcode, cancellationToken);
-
-                //Save changes
-                await _unitOfWork.CommitTransactionAsync(cancellationToken);
-            }
-            catch (Exception)
-            {
-                await _unitOfWork.RollbackTransactionAsycn(cancellationToken);
-
-                throw new Exception("Failed Process");
-            }
-           
-            //Mapping Entity to DTO
-            var response = _mapper.Map<ProductResponseDeleteDTO>(productFromdb);
-
-            //Saving changes
-            await _unitOfWork.SaveAsync(cancellationToken);
-
-            //Respons
             return response;
         }
     }

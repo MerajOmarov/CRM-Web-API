@@ -7,9 +7,9 @@ namespace Presentation.Controllers.Read.COPCompany
     [ApiController]
     public class ClientProductController : ControllerBase
     {
-        IProductReadRepository _product;
+        IGetProduct _product;
 
-        public ClientProductController(IProductReadRepository product)
+        public ClientProductController(IGetProduct product)
         {
             _product = product;
         }

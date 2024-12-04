@@ -100,11 +100,11 @@ namespace Infrastructure.Migrations._client_DbContext_readMigrations
 
             modelBuilder.Entity("Domen.Models.QueryModel.ProductReadModel", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<Guid>("Barcode")
                         .HasColumnType("uniqueidentifier");
@@ -140,7 +140,7 @@ namespace Infrastructure.Migrations._client_DbContext_readMigrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Products");
                 });

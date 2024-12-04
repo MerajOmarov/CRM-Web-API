@@ -9,15 +9,10 @@ namespace Domen.Models.CommandModels
 {
     public class OrderWriteModel
     {
-        [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
         public Guid Code { get; set; }
-        public Guid CustomerPIN { get; set; }
-        public Guid ProductBarcode { get; set; }
         public DateTime Deedline { get; set; }
         public DateTime CreatedTime { get; set; }
-
-        // Navigation parametrs
         public int CustomerID { get; set; }
         public CustomerWriteModel Customer { get; set; }
         public int ProductID { get; set; }

@@ -79,13 +79,13 @@ namespace Infrastructure.Migrations
                         name: "FK_Orders_Customers_CustomerID",
                         column: x => x.CustomerID,
                         principalTable: "Customers",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders_Products_productID",
                         column: x => x.productID,
                         principalTable: "Products",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -169,20 +169,20 @@ namespace Infrastructure.Migrations
                         name: "FK_All_orders_Model_write_All_customers_Model_write_ID",
                         column: x => x.ID,
                         principalTable: "All_customers_Model_write",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_All_orders_Model_write_All_products_Model_write_ID",
                         column: x => x.ID,
                         principalTable: "All_products_Model_write",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_All_orders_Model_write_ID",
                 table: "All_orders_Model_write",
-                column: "ID");
+                column: "Id");
         }
     }
 }

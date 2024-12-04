@@ -1,73 +1,28 @@
-﻿
-using Abstraction;
-using Abstraction.Abstractions.Write.Customer;
+﻿using Abstraction.Abstractions.Write.Customer;
 using AutoMapper;
-using Domen.DTOs.CommandDTOs.CustomerDTOs;
-using Domen.Models.CommandModels;
-using FluentValidation;
+using Domen.DTOs.Write.Customer;
 using MediatR;
 
 namespace Buisness.Handlers.Customer
 {
-    public class CustomerDeleteHandler : IRequestHandler<CustomerRequestDeleteDTO, CustomerResponseDeleteDTO>
+    public class CustomerDeleteHandler : IRequestHandler<DeleteCustomerRequest, DeleteCustomerResponse>
     {
         private readonly IMapper _mapper;
-        private readonly IValidator<CustomerRequestDeleteDTO> _validator;
-        private readonly ICustomerRemoveRepository _repositoryRemove;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IDeleteCustomer _deleteCustomer;
 
-        public CustomerDeleteHandler(
-            IMapper mapper,
-            IValidator<CustomerRequestDeleteDTO> validator,
-            ICustomerRemoveRepository repositoryRemove,
-            IUnitOfWork unitOfWork)
+        public CustomerDeleteHandler(IMapper mapper, IDeleteCustomer deleteCustomer)
         {
             _mapper = mapper;
-            _validator = validator;
-            _repositoryRemove = repositoryRemove;
-            _unitOfWork = unitOfWork;
+            _deleteCustomer = deleteCustomer;
         }
 
-        public async Task<CustomerResponseDeleteDTO> Handle(
-            CustomerRequestDeleteDTO request,
+        public async Task<DeleteCustomerResponse> Handle(
+            DeleteCustomerRequest request,
             CancellationToken cancellationToken)
         {
-            //Validation
-            var result = await _validator.ValidateAsync(request);
+            var customerFromdb = await _deleteCustomer.DeleteCustomerAsync(request, cancellationToken);
 
-            if (!result.IsValid)
-            {
-                foreach (var error in result.Errors)
-                {
-                    throw new Exception($"Validation Error: {error.ErrorMessage} for the property: {error.PropertyName}");
-                }
-            }
-
-            CustomerWriteModel customerFromdb=new();
-
-            try
-            {
-                //Begin transaction
-                await _unitOfWork.BeginTransactionAsync(System.Data.IsolationLevel.ReadCommitted, cancellationToken);
-
-                //Deleting from database
-                customerFromdb = await _repositoryRemove.RemoveCustomerAsync(request.PIN, cancellationToken);
-
-                //Saving changes
-                await _unitOfWork.CommitTransactionAsync(cancellationToken);
-            }
-            catch (Exception)
-            {
-                await _unitOfWork.RollbackTransactionAsycn(cancellationToken);
-
-                throw new Exception("Failed Process");
-            }
-
-            //Mapping Entity to DTO
-            var response = _mapper.Map<CustomerResponseDeleteDTO>(customerFromdb);
-
-            //Response
-            return response;
+            return _mapper.Map<DeleteCustomerResponse>(customerFromdb);
         }
     }
 }

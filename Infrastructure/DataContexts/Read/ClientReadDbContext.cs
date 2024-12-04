@@ -18,6 +18,5 @@ namespace Infrastructure.DataContexts.QueryDbContext
 
         }
         public DbSet<ProductReadModel> Products { get; set; }
-
     }
 }

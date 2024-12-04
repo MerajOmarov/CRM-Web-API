@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Buisness.FluentValidations.Order
 {
-    public class OrderUpdateDTOValidation : AbstractValidator<OrderRequestUpdateDTO>
+    public class OrderUpdateDTOValidation : AbstractValidator<UpdateOrderRequest>
     {
         public OrderUpdateDTOValidation()
         {
@@ -16,23 +16,16 @@ namespace Buisness.FluentValidations.Order
             .NotEmpty().WithMessage("Validation Error: The newDeedline field can not be null")
             .Must(BeAnDatetime).WithMessage("Validation Error: The newDeedline field must be datetime");
 
-            RuleFor(x => x.oldCode)
-            .NotEmpty().WithMessage("Validation Error: The oldCode field can not be null")
-            .Must(BeAnGuid).WithMessage("Validation Error: The oldCode field must be guid");
+            RuleFor(x => x.Id)
+            .NotEmpty().WithMessage("Validation Error: Id can not be null");
 
             RuleFor(x => x.newCode)
-            .NotEmpty().WithMessage("Validation Error: The newCode field can not be null")
-            .Must(BeAnGuid).WithMessage("Validation Error: The newCode field must be guid");
+            .NotEmpty().WithMessage("Validation Error: The newCode field can not be null");
         }
 
         private bool BeAnDatetime(DateTime time)
         {
             return time.GetType() == typeof(DateTime);
-        }
-
-        private bool BeAnGuid(Guid guid)
-        {
-            return guid.GetType() == typeof(Guid);
         }
     }
 }

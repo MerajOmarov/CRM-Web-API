@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Buisness.FluentValidations.Customer
 {
-    public class CustomerPostDTOValidation : AbstractValidator<CustomerRequestPostDTO>
+    public class CustomerPostDTOValidation : AbstractValidator<PostCustomerRequest>
     {
         public CustomerPostDTOValidation()
         {

@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Buisness.FluentValidations.Product
 {
-    public class ProductPostDTOValidation : AbstractValidator<ProductRequestPostDTO>
+    public class ProductPostDTOValidation : AbstractValidator<PostProductRequest>
     {
         public ProductPostDTOValidation()
         {

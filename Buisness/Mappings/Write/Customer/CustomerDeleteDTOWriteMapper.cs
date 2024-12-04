@@ -2,6 +2,7 @@
 using Buisness.DTOs.Command.Customer;
 using Buisness.DTOs.CommandDTOs.Customer;
 using Domen.DTOs.CommandDTOs.CustomerDTOs;
+using Domen.DTOs.Write.Customer;
 using Domen.Models.CommandModels;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Buisness.Mappings.Write.Customer
     {
         public CustomerDeleteDTOWriteMapper()
         {
-            CreateMap<CustomerWriteModel, CustomerResponseDeleteDTO>();
+            CreateMap<CustomerWriteModel, DeleteCustomerResponse>();
         }
     }
 }

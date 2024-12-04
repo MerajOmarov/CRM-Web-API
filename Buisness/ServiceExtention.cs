@@ -7,14 +7,13 @@ using Buisness.ActionFilters.CommandActionFilter.CustomerActionFilters;
 using Buisness.Buisness.FluentValidations.Customer;
 using Buisness.DTOs.Command.Customer;
 using Buisness.DTOs.Command.Order;
-using Buisness.DTOs.Command.Product;
 using Buisness.DTOs.CommandDTOs.Product;
 using Buisness.FluentValidations.Customer;
 using Buisness.FluentValidations.Order;
 using Buisness.FluentValidations.Product;
-using Domen.DTOs.CommandDTOs.CustomerDTOs;
-using Domen.DTOs.CommandDTOs.OrderDTOs;
-using Domen.DTOs.CommandDTOs.ProductDTOs;
+using Domen.DTOs.Write.Customer;
+using Domen.DTOs.Write.Order;
+using Domen.DTOs.Write.Product;
 using FluentValidation;
 using Infrastructure;
 using Infrastructure.Repositories.CommandRepositories.CustomerRepository;
@@ -43,76 +42,69 @@ namespace Buisness
             //FLUENT VALIDATOR//
             //Customer
             services.AddValidatorsFromAssemblyContaining<CustomerPostDTOValidation>();
-            services.AddScoped<IValidator<CustomerRequestPostDTO>, CustomerPostDTOValidation>();
+            services.AddScoped<IValidator<PostCustomerRequest>, CustomerPostDTOValidation>();
 
-            services.AddValidatorsFromAssemblyContaining<CustomerUpdateDTOValidation>();
-            services.AddScoped<IValidator<CustomerRequestUpdateDTO>, CustomerUpdateDTOValidation>();
+            services.AddValidatorsFromAssemblyContaining<UpdateCustomerRequestValidation>();
+            services.AddScoped<IValidator<UpdateCustomerRequest>, UpdateCustomerRequestValidation>();
 
-            services.AddValidatorsFromAssemblyContaining<CustomerRemoveDTOValidation>();
-            services.AddScoped<IValidator<CustomerRequestDeleteDTO>, CustomerRemoveDTOValidation>();
+            services.AddValidatorsFromAssemblyContaining<DeleteCustomerRequestValidation>();
+            services.AddScoped<IValidator<DeleteCustomerRequest>, DeleteCustomerRequestValidation>();
 
 
             //Order
             services.AddValidatorsFromAssemblyContaining<OrderPostDTOValidation>();
-            services.AddScoped<IValidator<OrderRequestPostDTO>, OrderPostDTOValidation>();
+            services.AddScoped<IValidator<PostOrderRequest>, OrderPostDTOValidation>();
 
             services.AddValidatorsFromAssemblyContaining<OrderUpdateDTOValidation>();
-            services.AddScoped<IValidator<OrderRequestUpdateDTO>, OrderUpdateDTOValidation>();
+            services.AddScoped<IValidator<UpdateOrderRequest>, OrderUpdateDTOValidation>();
 
-            services.AddValidatorsFromAssemblyContaining<OrderDeleteDTOValidation>();
-            services.AddScoped<IValidator<OrderRequestDeleteDTO>, OrderDeleteDTOValidation>();
+            services.AddValidatorsFromAssemblyContaining<DeleteOrderRequestValidation>();
+            services.AddScoped<IValidator<DeleteOrderRequest>, DeleteOrderRequestValidation>();
 
 
             //Product
             services.AddValidatorsFromAssemblyContaining<ProductPostDTOValidation>();
-            services.AddScoped<IValidator<ProductRequestPostDTO>, ProductPostDTOValidation>();
+            services.AddScoped<IValidator<PostProductRequest>, ProductPostDTOValidation>();
 
-            services.AddValidatorsFromAssemblyContaining<ProductUpdateDTOValidation>();
-            services.AddScoped<IValidator<ProductRequestUpdateDTO>, ProductUpdateDTOValidation>();
+            services.AddValidatorsFromAssemblyContaining<UpdateProductRequestValidation>();
+            services.AddScoped<IValidator<UpdateProductRequest>, UpdateProductRequestValidation>();
 
-            services.AddValidatorsFromAssemblyContaining<ProductDeleteDTOValidation>();
-            services.AddScoped<IValidator<ProductRequestDeleteDTO>, ProductDeleteDTOValidation>();
+            services.AddValidatorsFromAssemblyContaining<DeleteProductRequestValidation>();
+            services.AddScoped<IValidator<DeleteProductRequest>, DeleteProductRequestValidation>();
         
 
             //JWT//
-            services.AddTransient<IJwtAuthRepository, JwtRepositoryauth>();
+            services.AddTransient<IJwtAuth, JwtRepositoryauth>();
 
 
             //REPOSITORIES//
             //Customer
-            services.AddScoped<ICustomerPostRepository, CustomerPostRepository>();
+            services.AddScoped<IPostCustomer, PostCustomer>();
 
-            services.AddScoped<ICustomerUpdateRepository, CustomerUpdateRepository>();
+            services.AddScoped<IUpdateCustomer, UpdateCustomer>();
 
-            services.AddScoped<ICustomerRemoveRepository, CustomerRemoveRepository>();
-
-            services.AddScoped<ICustomerResponseRepository, CustomerResponseRepository>();
-
+            services.AddScoped<IDeleteCustomer, DeleteCustomer>();
 
             //Product
-            services.AddScoped<IProductPostRepository, ProductPostRepository>();
+            services.AddScoped<IPostProduct, PostProduct>();
 
-            services.AddScoped<IProductUpdateRepository, ProductUpdateRepository>();
+            services.AddScoped<IUpdateProduct, UpdateProduct>();
 
-            services.AddScoped<IProductRemoveRepository, ProductRemoveRepository>();
+            services.AddScoped<IDeleteProduct, DeleteProduct>();
 
-            services.AddScoped<IProductResponseRepository, ProductResponseRepository>();
-
-            services.AddScoped<IProductReadRepository, ProductReadRepository>();
+            services.AddScoped<IGetProduct, GetProduct>();
 
 
             //Order
-            services.AddScoped<IOrderPostRepository, OrderPostRepository>();
+            services.AddScoped<IPostOrder, PostOrder>();
 
-            services.AddScoped<IOrderUpdateRepository, OrderUpdateRepository>();
+            services.AddScoped<IUpdateOrder, UpdateOrder>();
 
-            services.AddScoped<IOrderRemoveRepository, OrderRemoveRepository>();
-
-            services.AddScoped<IOrderResponseRepository, OrderResponseRepository>();
+            services.AddScoped<IDeleteOrder, DeleteOrder>();
 
 
             //CustomerOrderProduct
-            services.AddScoped<ICOPReadRepository, COPReadRepository>();
+            services.AddScoped<IGetCustomerObjectProduct, GetCustomerOrderProduct>();
 
 
             //UNIT OF WORK//
@@ -120,7 +112,7 @@ namespace Buisness
 
 
             //ACTION FILTER//
-            services.AddScoped<postCustomerActionFilter>();
+            services.AddScoped<PostFilterCustomer>();
         }
     }
 }
